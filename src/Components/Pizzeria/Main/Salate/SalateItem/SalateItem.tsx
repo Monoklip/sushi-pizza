@@ -1,6 +1,7 @@
+import { useEffect, useState } from 'react';
 import './salate-item.scss';
 
-const SalateItem = (props: { elem: { name: string; price: number; gramm: number; basket: string; image: string; num: number }; uptadeFoodkList: (arg0: { name: string; price: number; image: string; gramm: number; num: number; sum: number}) => void; }) => {
+const SalateItem = (props: { elem: { name: string; price: number; gramm: number; basket: string; image: string; num: number }; uptadeFoodkList: (arg0: { name: string; price: number; image: string; gramm: number; num: number; sum: number}) => void; salate: any }) => {
 
     const { name,
         price,
@@ -18,8 +19,25 @@ const SalateItem = (props: { elem: { name: string; price: number; gramm: number;
             num: 1,
             sum: price
         });
-
     };
+
+    const [btnNone, setBtnNone] = useState(true);
+    const [btnYes, setBtnYes] = useState(false);
+
+    const food = JSON.parse(localStorage.getItem('Food') as string) || [];
+
+    const getFood = async() => {
+        food.map((elem: { name: string; }) => {
+            if(elem.name === name){
+                setBtnNone(false);
+                setBtnYes(true);
+            }            
+        })
+    };
+
+    useEffect(()=>{
+        getFood();
+    },[props.salate]);
 
     return(
         <div className='salate-item'>
@@ -34,7 +52,12 @@ const SalateItem = (props: { elem: { name: string; price: number; gramm: number;
             </div>
             <div className="salate-item-buy">
                 <div className="salate-item-buy-price">{price} грн <span> / {gramm} грам</span></div>
-                <button className="salate-item-buy-btn" onClick={salateBtn}>Замовити</button>
+                {btnNone && 
+                    <button className="salate-item-buy-btn-green" onClick={salateBtn}>Замовити</button>    
+                }
+                {btnYes && 
+                    <button className="salate-item-buy-btn-orange" onClick={salateBtn}>Хочу ще</button>
+                }
             </div>
         </div>
     )

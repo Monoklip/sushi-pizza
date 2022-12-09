@@ -18,14 +18,14 @@ const Pizzeria = () => {
             localStorage.setItem('Food', JSON.stringify([...food, newList]));
         }
         else{
-            alert('Ви вже таке вибрали');
+            alert('Ця страва вже знаходиться у вашому кошику');
         }
     };
     
     return(
         <div className='pizzeria'>
             <Header food={food} setFood={setFood}/>
-            <Main uptadeFoodkList={uptadeFoodkList} />
+            <Main uptadeFoodkList={uptadeFoodkList} food={food} setFood={setFood}/>
             <Footer/>
         </div>
     )

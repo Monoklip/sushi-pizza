@@ -12,13 +12,13 @@ import Salate from './Salate/Salate';
 import Bar from './Bar/Bar';
 import NotPageFound from './NotPageFound/NotPageFound';
 
-const Main = (props: { uptadeFoodkList: any; }) => {
+const Main = (props: { uptadeFoodkList: any; food: any; setFood: any; }) => {
 
     return(
         <Routes>
             <Route path='/' element={<Home/>}></Route>
-            <Route path='/sushi' element={<Sushi uptadeFoodkList={props.uptadeFoodkList}/>}></Route>
-            <Route path='/pizza' element={<Pizza uptadeFoodkList={props.uptadeFoodkList}/>}></Route>
+            <Route path='/sushi' element={<Sushi uptadeFoodkList={props.uptadeFoodkList} food={props.food} setFood={props.setFood}/>}></Route>
+            <Route path='/pizza' element={<Pizza uptadeFoodkList={props.uptadeFoodkList} />}></Route>
             <Route path='/salate' element={<Salate uptadeFoodkList={props.uptadeFoodkList}/>}></Route>
             <Route path='/bar' element={<Bar uptadeFoodkList={props.uptadeFoodkList}/>}></Route>
             <Route path='/shared' element={<Shared/>}></Route>

@@ -19,11 +19,11 @@ const Header = (props: { food: any; setFood: any; }) => {
     const [position, setPosition] = useState<number>(0);
     const [price, setPrice] = useState<number>(0);
 
-    const [phoneStreet, setPhoneStreet] = useState('+38(063)604-42-93');
+    const [phoneStreet, setPhoneStreet] = useState<string>('+38(063)604-42-93');
 
-    const [colorStreet1, setColorStreet1] = useState('black');
-    const [colorStreet2, setColorStreet2] = useState('white');
-    const [colorStreet3, setColorStreet3] = useState('white');
+    const [colorStreet1, setColorStreet1] = useState<string>('black');
+    const [colorStreet2, setColorStreet2] = useState<string>('white');
+    const [colorStreet3, setColorStreet3] = useState<string>('white');
 
     useEffect(()=>{
         setPosition(food.length);
@@ -43,7 +43,7 @@ const Header = (props: { food: any; setFood: any; }) => {
         else{
             setBuyDispayNone(true);
             setBuyDispayNext(false);
-        }
+        };
     },[food.length]);
 
     const btnBuy = () => {

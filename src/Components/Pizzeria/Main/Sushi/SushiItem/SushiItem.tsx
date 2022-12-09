@@ -1,6 +1,7 @@
+import { useEffect, useState } from 'react';
 import './sushi-item.scss';
 
-const SushiItem = (props: { elem: { name: string; price: number; gramm: number; basket: string; image: string; num: number }; uptadeFoodkList: (arg0: { name: string; price: number; image: string; gramm: number; num: number; sum: number}) => void; }) => {
+const SushiItem = (props: { elem: { name: string; price: number; gramm: number; basket: string; image: string; num: number }; uptadeFoodkList: (arg0: { name: string; price: number; image: string; gramm: number; num: number; sum: number}) => void; sushi: any; food: any; setFood: any }) => {
 
     const { name,
         price,
@@ -18,8 +19,24 @@ const SushiItem = (props: { elem: { name: string; price: number; gramm: number; 
             num: 1,
             sum: price
         });
-
     };
+    const { food, setFood } = props;
+
+    const [btnNone, setBtnNone] = useState(true);
+    const [btnYes, setBtnYes] = useState(false);
+
+    const getFood = async() => {
+        food.map((elem: { name: string; }) => {
+            if(elem.name === name){
+                setBtnNone(false);
+                setBtnYes(true);
+            }            
+        })
+    };
+
+    useEffect(()=>{
+        getFood();
+    },[props.sushi]);
 
     return(
         <div className='sushi-item'>
@@ -34,7 +51,12 @@ const SushiItem = (props: { elem: { name: string; price: number; gramm: number; 
             </div>
             <div className="sushi-item-buy">
                 <div className="sushi-item-buy-price">{price} грн <span> / {gramm} грам</span></div>
-                <button className="sushi-item-buy-btn" onClick={sushiBtn}>Замовити</button>
+                {btnNone && 
+                    <button className="sushi-item-buy-btn-green" onClick={sushiBtn}>Замовити</button>    
+                }
+                {btnYes && 
+                    <button className="sushi-item-buy-btn-orange" onClick={sushiBtn}>Заказ прийнято</button>
+                }
             </div>
         </div>
     )

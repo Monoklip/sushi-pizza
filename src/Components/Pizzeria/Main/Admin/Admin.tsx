@@ -100,7 +100,7 @@ const Admin = () => {
                 <div className="admin-login">
                     <h1>Вхід</h1>
                     <input type="text" placeholder='Login' onChange={loginHandleChange}/>
-                    <input type="text" placeholder='Password' onChange={passwordHandleChange}/><br />
+                    <input type="password" placeholder='Password' onChange={passwordHandleChange}/><br />
                     <button onClick={singInBtn}>Увійти</button>
                 </div>
             }

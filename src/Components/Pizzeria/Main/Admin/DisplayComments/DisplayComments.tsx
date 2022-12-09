@@ -19,8 +19,8 @@ const DisplayComments = () => {
 
     return(
         <div className="display-comments">
-            {data.map(elem => {
-                return <DisplayCommentsItem elem={elem}/>
+            {data.map((elem: { name: string; phone: number; number: number; text: string; check: string; id: number; }) => {
+                return <DisplayCommentsItem key={elem.id} elem={elem}/>
             })}
         </div>
     )

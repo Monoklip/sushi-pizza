@@ -1,6 +1,7 @@
+import { useEffect, useState } from 'react';
 import './bar-item.scss';
 
-const BarItem = (props: { elem: { name: string; price: number; gramm: number; basket: string; image: string; num: number }; uptadeFoodkList: (arg0: { name: string; price: number; image: string; gramm: number; num: number; sum: number}) => void; }) => {
+const BarItem = (props: { elem: { name: string; price: number; gramm: number; basket: string; image: string; num: number }; uptadeFoodkList: (arg0: { name: string; price: number; image: string; gramm: number; num: number; sum: number}) => void; bar:any }) => {
 
     const { name,
         price,
@@ -21,6 +22,24 @@ const BarItem = (props: { elem: { name: string; price: number; gramm: number; ba
 
     };
 
+    const [btnNone, setBtnNone] = useState(true);
+    const [btnYes, setBtnYes] = useState(false);
+
+    const food = JSON.parse(localStorage.getItem('Food') as string) || [];
+
+    const getFood = async() => {
+        food.map((elem: { name: string; }) => {
+            if(elem.name === name){
+                setBtnNone(false);
+                setBtnYes(true);
+            }            
+        })
+    };
+
+    useEffect(()=>{
+        getFood();
+    },[props.bar]);
+
     return(
         <div className='bar-item'>
             <div className="bar-item-info">
@@ -34,7 +53,12 @@ const BarItem = (props: { elem: { name: string; price: number; gramm: number; ba
             </div>
             <div className="bar-item-buy">
                 <div className="bar-item-buy-price">{price} грн <span> / {gramm} грам</span></div>
-                <button className="bar-item-buy-btn" onClick={barBtn}>Замовити</button>
+                {btnNone && 
+                    <button className="bar-item-buy-btn-green" onClick={barBtn}>Замовити</button>    
+                }
+                {btnYes && 
+                    <button className="bar-item-buy-btn-orange" onClick={barBtn}>Хочу ще</button>
+                }
             </div>
         </div>
     )

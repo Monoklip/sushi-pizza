@@ -24,7 +24,7 @@ const Bar = (props: { uptadeFoodkList: (arg0: { name: string; price: number; ima
             <h1>НАПОЇ</h1>
             <div className="bar-items">
                 {bar.map((elem: { name: string; price: number; gramm: number; basket: string; image: string; num: number; id: number;}) => {
-                    return <BarItem elem={elem} key={elem.id} uptadeFoodkList={props.uptadeFoodkList}/>
+                    return <BarItem elem={elem} key={elem.id} uptadeFoodkList={props.uptadeFoodkList} bar={bar}/>
                 })}
             </div>
         </div>

@@ -49,13 +49,31 @@
                 color: grey;
             }
         }
-        .pizza-item-buy-btn{
+        .pizza-item-buy-btn-green{
             width: 40%;
             height: 30px;
             border: none;
             border-radius: 5px;
             background: #8ab800;
             color: white;
+            cursor: pointer;
+
+            &:hover{
+                background: #5d7c00;
+            }
+        }
+        .pizza-item-buy-btn-orange{
+            width: 40%;
+            height: 30px;
+            border: none;
+            border-radius: 5px;
+            background: orange;
+            color: white;
+            cursor: pointer;
+
+            &:hover{
+                background: rgb(158, 103, 0);
+            }
         }
     }
 }

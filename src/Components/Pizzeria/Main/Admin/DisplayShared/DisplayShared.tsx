@@ -60,8 +60,8 @@ const DisplayShared = () => {
                 <button onClick={createBtn}>Додати</button>
             </div>
             <div className="display-shared-delete">
-                {data.map(elem => {
-                    return <DisplaySharedItem elem={elem}/>
+                {data.map((elem: { name: string; info: string; image: string; id: number; }) => {
+                    return <DisplaySharedItem key={elem.id} elem={elem}/>
                 })}
             </div>
         </div>

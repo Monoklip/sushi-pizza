@@ -4,8 +4,8 @@
       "name": "Філадельфія",
       "price": 207,
       "gramm": 240,
-      "basket": "Лосось, Сир Філадельфія, Авокадо, Огірок",
-      "image": "https://panda-sushi.com.ua/cache/dish/img/dishes/sushi/rolls/phila.jpg?160822",
+      "basket": "Лосось, Сир Філадельфія, Огірок",
+      "image": "https://panda-sushi.com.ua/cache/dish/img/dishes/sushi/rolls/tora.jpg?160822",
       "id": 1
     },
     {
@@ -167,6 +167,14 @@
       "basket": "Лосось, Сир Філадельфія, Авокадо, Кунжут мішаний",
       "image": "https://panda-sushi.com.ua/cache/dish/img/dishes/sushi/rolls/yamato.jpg?160822",
       "id": 21
+    },
+    {
+      "name": "",
+      "price": "2074",
+      "gramm": "2403",
+      "basket": "",
+      "image": "",
+      "id": 22
     }
   ],
   "pizza": [

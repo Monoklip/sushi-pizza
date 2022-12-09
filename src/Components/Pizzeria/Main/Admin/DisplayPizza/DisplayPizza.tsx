@@ -76,8 +76,8 @@ const DisplayPizza = () => {
                 <button onClick={createBtn}>Додати</button>
             </div>
             <div className="display-pizza-delete">
-                {data.map(elem => {
-                    return <DisplayPizzaItem elem={elem}/>
+            {data.map((elem: {name: string; price: number; gramm:number; basket: string; image: string; id: number;}) => {
+                    return <DisplayPizzaItem key={elem.id} elem={elem}/>
                 })}
             </div>
         </div>

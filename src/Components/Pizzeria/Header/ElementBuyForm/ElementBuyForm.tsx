@@ -3,14 +3,14 @@ import './element-buy-form.scss';
 
 const ElementBuyForm = (props: { btnBuyEnd: () => void; }) => {
 
-    const [name, setName] = useState('');
-    const [phone, setPhone] = useState(0);
-    const [email, setEmail] = useState('');
-    const [street, setStreet] = useState('');
-    const [number, setNumber] = useState(0);
-    const [entrance, setEntrance] = useState(0);
-    const [storey, setStorey] = useState(0);
-    const [apartment, setApartment] = useState(0);
+    const [name, setName] = useState<string>('');
+    const [phone, setPhone] = useState<number>(0);
+    const [email, setEmail] = useState<string>('');
+    const [street, setStreet] = useState<string>('');
+    const [number, setNumber] = useState<number>(0);
+    const [entrance, setEntrance] = useState<number>(0);
+    const [storey, setStorey] = useState<number>(0);
+    const [apartment, setApartment] = useState<number>(0);
 
     const nameHandleChange = (event: { target: { value: SetStateAction<string>; }; }) => {
         setName(event.target.value);
@@ -52,7 +52,7 @@ const ElementBuyForm = (props: { btnBuyEnd: () => void; }) => {
         else{
             alert('Заповніть всі обовязкові поля');
         }
-    }
+    };
 
     return(
         <>

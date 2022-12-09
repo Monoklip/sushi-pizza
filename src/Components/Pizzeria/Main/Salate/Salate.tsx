@@ -20,7 +20,7 @@ const Salate = (props: { uptadeFoodkList: (arg0: { name: string; price: number; 
             <h1>Салати</h1>
             <div className="salate-items">
                 {salate.map((elem: { name: string; price: number; gramm: number; basket: string; image: string; num: number; id: number;}) => {
-                    return <SalateItem elem={elem} key={elem.id} uptadeFoodkList={props.uptadeFoodkList}/>
+                    return <SalateItem elem={elem} key={elem.id} uptadeFoodkList={props.uptadeFoodkList} salate={salate}/>
                 })}
             </div>
         </div>
