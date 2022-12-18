@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 import './salate-item.scss';
 
 const SalateItem = (props: { elem: { name: string; price: number; gramm: number; basket: string; image: string; num: number }; uptadeFoodkList: (arg0: { name: string; price: number; image: string; gramm: number; num: number; sum: number}) => void; salate: any }) => {
@@ -41,15 +42,17 @@ const SalateItem = (props: { elem: { name: string; price: number; gramm: number;
 
     return(
         <div className='salate-item'>
-            <div className="salate-item-info">
-                <div className="salate-item-info-image">
-                    <img src={`${image}`} alt="" />
+            <Link to={`./${name}`}>
+                <div className="salate-item-info">
+                    <div className="salate-item-info-image">
+                        <img src={`${image}`} alt="" />
+                    </div>
+                    <div className="salate-item-info-details">
+                        <h1>{name}</h1>
+                        <p>{basket}</p>
+                    </div>
                 </div>
-                <div className="salate-item-info-details">
-                    <h1>{name}</h1>
-                    <p>{basket}</p>
-                </div>
-            </div>
+            </Link>
             <div className="salate-item-buy">
                 <div className="salate-item-buy-price">{price} грн <span> / {gramm} грам</span></div>
                 {btnNone && 

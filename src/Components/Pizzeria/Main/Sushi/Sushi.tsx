@@ -16,12 +16,14 @@ const Sushi = (props: { uptadeFoodkList: (arg0: { name: string; price: number; i
 
     useEffect(()=>{
         sushiBtn();
-    },[sushi])
+    },[sushi]);
 
     return(
         <div className='sushi'>
             <IconMenu/>
-            <h1>СУШІ</h1>
+            <div className='sushi-title'>
+                <h1>СУШІ</h1>
+            </div>
             <div className="sushi-items">
                 {sushi.map((elem: { name: string; price: number; gramm: number; basket: string; image: string; num: number; id: number;}) => {
                     return <SushiItem elem={elem} key={elem.id} uptadeFoodkList={props.uptadeFoodkList} sushi={sushi} food={props.food} setFood={props.setFood}/>

@@ -3,10 +3,16 @@
     padding: 0 100px;
     box-sizing: border-box;
 
-    h1{
+    .bar-title{
+        width: 50%;
+        height: 50px;
+        margin: 0 auto;
         text-align: center;
-        color: #8ab800;
-        margin-top: 10px;
+        border-bottom: 3px dashed grey;
+
+        h1{
+            color: #8ab800;
+        }
     }
     .bar-items{
         display: grid;

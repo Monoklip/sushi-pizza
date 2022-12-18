@@ -12,6 +12,11 @@
 
         img{
             height: 70%;
+        
+            &:hover{
+                background: rgba(0, 0, 0, 0.2);
+                border-radius: 5px;
+            }
         }
     }
     .header-info{
@@ -72,7 +77,6 @@
         background: white;
         border: 3px solid #6b8f01;
         margin-top: -10px;
-        position: center;
         cursor: pointer;
 
         a{
@@ -90,6 +94,10 @@
             span{
                 display: none;
             }
+        }
+
+        &:hover{
+            transform: scale(1.01);
         }
     }
     .header-info-right{

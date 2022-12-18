@@ -10,6 +10,7 @@
         border-radius: 10px;
         padding: 20px;
         box-sizing: border-box;
+        margin-right: 5px;
 
         p{
             margin-top: 10px;
@@ -31,7 +32,6 @@
     .display-bar-delete{
         display: grid;
         grid-template-columns: 1fr 1fr 1fr;
-        border-radius: 10px;
     }
 }
 

@@ -167,14 +167,6 @@
       "basket": "Лосось, Сир Філадельфія, Авокадо, Кунжут мішаний",
       "image": "https://panda-sushi.com.ua/cache/dish/img/dishes/sushi/rolls/yamato.jpg?160822",
       "id": 21
-    },
-    {
-      "name": "",
-      "price": "2074",
-      "gramm": "2403",
-      "basket": "",
-      "image": "",
-      "id": 22
     }
   ],
   "pizza": [
@@ -478,8 +470,8 @@
     },
     {
       "name": "WOK з овочами",
-      "price": 121,
-      "gramm": 415,
+      "price": "121",
+      "gramm": "415",
       "basket": "Печериці, Морква, Капуста пекінська, Цибуля ріпчаста, Болгарський перець, Кунжут мішаний, Локшина пшенична, Броколі, Соус Унагі, Стручкова квасоля",
       "image": "https://panda-sushi.com.ua/cache/dish/img/dishes/soup_and_salad/wok_vegan.jpg?160822",
       "id": 16

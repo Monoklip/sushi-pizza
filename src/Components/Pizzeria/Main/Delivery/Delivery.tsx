@@ -2,8 +2,8 @@ import './delivery.scss';
 
 const Delivery = () => {
     return(
-        <div>
-
+        <div className='delivery'>
+            
         </div>
     )
 };

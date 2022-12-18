@@ -3,6 +3,7 @@
     border: 1px solid #96cb01;
     display: flex;
     justify-content: space-between;
+    margin-bottom: 10px;
 
     .DisplaySharedItem-photo{
         width: 35%;
@@ -11,18 +12,32 @@
         img{
             width: 100%;
         }
-        button{
-            width: 100px;
-            height: 20px;
+        .DisplaySharedItem-btnDelete{
+            width: 120px;
+            height: 25px;
             background: red;
             color: white;
             border: none;
             border-radius: 5px;
-            margin: 10px auto;
+            margin: 10px 20px;
             cursor: pointer;
 
             &:hover{
                 background: rgb(139, 1, 1);
+            }
+        }
+        .DisplaySharedItem-btnRename{
+            width: 120px;
+            height: 25px;
+            background: orange;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            margin: 10px 20px;
+            cursor: pointer;
+
+            &:hover{
+                background: rgb(156, 102, 1);
             }
         }
     }
@@ -35,8 +50,39 @@
             text-align: center;
         }
         p{
-            margin-top: 50px
-            ;
+            margin-top: 50px;
+        }
+    }
+    .DisplaySharedItem-infoRename{
+        width: 65%;
+        padding: 20px;
+        box-sizing: border-box;
+        text-align: center;
+
+        p{
+            margin-top: 10px;
+        }
+        input{
+            width: 60%;
+            margin-top: 5px;
+        }
+        textarea{
+            width: 60%;
+            height: 100px;
+        }
+        .DisplaySharedItem-btnSave{
+            width: 120px;
+            height: 25px;
+            background: green;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            margin: 10px 20px;
+            cursor: pointer;
+
+            &:hover{
+                background: rgb(0, 83, 0);
+            }
         }
     }
 }

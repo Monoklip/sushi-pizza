@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 import './pizza-item.scss';
 
 const PizzaItem = (props: { elem: { name: string; price: number; gramm: number; basket: string; image: string; num: number }; uptadeFoodkList: (arg0: { name: string; price: number; image: string; gramm: number; num: number; sum: number}) => void; pizza: any; }) => {
@@ -41,15 +42,17 @@ const PizzaItem = (props: { elem: { name: string; price: number; gramm: number; 
 
     return(
         <div className='pizza-item'>
-            <div className="pizza-item-info">
-                <div className="pizza-item-info-image">
-                    <img src={`${image}`} alt="" />
+            <Link to={`./${name}`}>
+                <div className="pizza-item-info">
+                    <div className="pizza-item-info-image">
+                        <img src={`${image}`} alt="" />
+                    </div>
+                    <div className="pizza-item-info-details">
+                        <h1>{name}</h1>
+                        <p>{basket}</p>
+                    </div>
                 </div>
-                <div className="pizza-item-info-details">
-                    <h1>{name}</h1>
-                    <p>{basket}</p>
-                </div>
-            </div>
+            </Link>
             <div className="pizza-item-buy">
                 <div className="pizza-item-buy-price">{price} грн <span> / {gramm} грам</span></div>
                 {btnNone && 

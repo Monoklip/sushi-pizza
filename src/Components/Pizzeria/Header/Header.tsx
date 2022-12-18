@@ -125,7 +125,7 @@ const Header = (props: { food: any; setFood: any; }) => {
                         </a>
                     </div>
                     <div className="header-info-internet-time">
-                        <h4>ПРАЦЮЄМО: з 9:00 до 22:00</h4>
+                        <h4>ПРАЦЮЄМО: з 10:00 до 22:00</h4>
                     </div>
                 </div>
                 <div className="header-info-pages">

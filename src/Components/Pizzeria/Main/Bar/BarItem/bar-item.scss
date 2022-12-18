@@ -3,32 +3,43 @@
     padding: 10px;
     box-sizing: border-box;
     margin-top: 20px;
+    font-family: sans-serif;
+    font-style: italic;
+    letter-spacing: 1.2px;
 
-    .bar-item-info{
-        width: 100%;
+    a{
+        text-decoration: none;
+        color: black;
 
-        .bar-item-info-image{
+        .bar-item-info{
             width: 100%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
     
-            img{
-                height: 250px;
+            .bar-item-info-image{
+                width: 100%;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+        
+                img{
+                    height: 250px;
+                }
             }
-        }
-        .bar-item-info-details{
-            width: 100%;
-            text-align: center;
-            
-            h1{
-                color: #8ab800;
-                text-decoration: underline;
-            }
-            p{
-                text-align: left;
-                margin-top: 10px;
+            .bar-item-info-details{
+                width: 100%;
                 text-align: center;
+                
+                h1{
+                    color: #8ab800;
+                    text-decoration: underline;
+                    font-size: 26px;
+                }
+                p{
+                    color: #9e9e9e;
+                    text-align: left;
+                    margin-top: 10px;
+                    text-align: center;
+                    font-size: 14px;
+                }
             }
         }
     }
@@ -42,10 +53,12 @@
             width: 60%;
             text-align: center;
             font-size: 24px;
+            font-style: normal;
 
             span{
                 font-size: 14px;
                 color: grey;
+                font-style: italic;
             }
         }
         .bar-item-buy-btn-green{
@@ -55,6 +68,14 @@
             border-radius: 5px;
             background: #8ab800;
             color: white;
+            font-size: 16px;
+            cursor: pointer;
+
+            &:hover{
+                background: white;
+                color: #8ab800;
+                border: 2px solid #8ab800;
+            }
         }
         .bar-item-buy-btn-orange{
             width: 40%;
@@ -63,10 +84,13 @@
             border-radius: 5px;
             background: orange;
             color: white;
+            font-size: 16px;
             cursor: pointer;
 
             &:hover{
-                background: rgb(158, 103, 0);
+                background: white;
+                color: orange;
+                border: 2px solid orange;
             }
         }
     }
@@ -79,19 +103,10 @@
         border: 1px solid #8ab800;
         border-radius: 10px;
     }
-    .bar-item .bar-item-info .bar-item-info-image img{
-        height: 250px;
-    }
 }
 
-@media screen and (max-width: 450px){
-    .bar-item .bar-item-info .bar-item-info-image img{
+@media screen and (max-width: 350px){
+    .bar-item a .bar-item-info .bar-item-info-image img{
         height: 200px;
-    }
-}
-
-@media screen and (max-width: 320px){
-    .bar-item .bar-item-info .bar-item-info-image img{
-        height: 150px;
     }
 }
