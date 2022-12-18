@@ -54,7 +54,7 @@ const PizzaItem = (props: { elem: { name: string; price: number; gramm: number; 
                 </div>
             </Link>
             <div className="pizza-item-buy">
-                <div className="pizza-item-buy-price">{price} грн <span> / {gramm} грам</span></div>
+                <div className="pizza-item-buy-price">{price} грн <span> / {gramm} гр</span></div>
                 {btnNone && 
                     <button className="pizza-item-buy-btn-green" onClick={pizzaBtn}>Замовити</button>    
                 }

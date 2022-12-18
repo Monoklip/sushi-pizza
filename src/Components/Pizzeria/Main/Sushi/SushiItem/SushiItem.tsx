@@ -53,7 +53,7 @@ const SushiItem = (props: { elem: { name: string; price: number; gramm: number; 
                 </div>
             </Link>
             <div className="sushi-item-buy">
-                <div className="sushi-item-buy-price">{price} грн <span> / {gramm} грам</span></div>
+                <div className="sushi-item-buy-price">{price} грн <span> / {gramm} гр</span></div>
                 {btnNone && 
                     <button className="sushi-item-buy-btn-green" onClick={sushiBtn}>Замовити</button>    
                 }

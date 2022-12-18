@@ -40,22 +40,26 @@
                     font-size: 20px;
                 }
     
-                p{
-                    margin-top: 10px;
-                    color: #9e9e9e;
-                    font-style: italic;
-                    font-size: 14px;
+                .salate-url-details-info-basket{
+                    min-height: 100px;
+
+                    p{
+                        margin-top: 10px;
+                        color: #9e9e9e;
+                        font-style: italic;
+                        font-size: 14px;
+                    }
                 }
                 .salate-url-details-info-GrammPrice{
                     width: 100%;
                     display: flex;
-                    justify-content: space-around;
+                    justify-content: space-between;
                     margin-top: 20px;
 
                     .salate-url-details-info-GrammPrice-priceButton{
                         text-align: center;
 
-                        button{
+                        .salate-url-details-info-GrammPrice-priceButton-green{
                             width: 150px;
                             height: 30px;
                             font-size: 18px;
@@ -71,6 +75,33 @@
                                 color: #9cc000;
                             }
                         }
+                        .salate-url-details-info-GrammPrice-priceButton-orange{
+                            width: 150px;
+                            height: 30px;
+                            font-size: 18px;
+                            color: white;
+                            margin-top: 5px;
+                            border-radius: 7px;
+                            background-color: orange;
+                            border: 2px solid orange;
+                            cursor: pointer;
+
+                            &:hover{
+                                background: white;
+                                color: orange;
+                            }
+                        }
+                    }
+                }
+            }
+            .salate-url-details-close{
+                width: 2%;
+
+                img{
+                    width: 100%;
+
+                    &:hover{
+                        cursor: pointer;
                     }
                 }
             }

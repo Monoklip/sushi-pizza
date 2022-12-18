@@ -87,16 +87,17 @@ const Main = (props: { uptadeFoodkList: { (arg0: { name: string; price: number; 
             <Route path='/contacts'></Route>
             <Route path='*' element={<NotPageFound/>}></Route>
             {sushiData.map((elem: { name: string; price: number; gramm: number; basket: string; image: string; }) => {
-                return <Route path={`/sushi/${elem.name}`} element={<SushiUrl elem={elem}/>}></Route>
+                return <Route path={`/sushi/${elem.name}`} element={<SushiUrl elem={elem} key={elem.name} uptadeFoodkList={props.uptadeFoodkList}/>}></Route>
             })}
             {pizzaData.map((elem: { name: string; price: number; gramm: number; basket: string; image: string; }) => {
-                return <Route path={`/pizza/${elem.name}`} element={<PizzaUrl elem={elem}/>}></Route>
+                return <Route path={`/pizza/${elem.name}`} element={<PizzaUrl elem={elem} key={elem.name} uptadeFoodkList={props.uptadeFoodkList}/>}></Route>
             })}
             {salateData.map((elem: { name: string; price: number; gramm: number; basket: string; image: string; }) => {
-                return <Route path={`/salate/${elem.name}`} element={<SalateUrl elem={elem}/>}></Route>
+                return <Route path={`/salate/${elem.name}`} element={<SalateUrl elem={elem} key={elem.name}
+                uptadeFoodkList={props.uptadeFoodkList}/>}></Route>
             })}
             {barData.map((elem: { name: string; price: number; gramm: number; basket: string; image: string; }) => {
-                return <Route path={`/bar/${elem.name}`} element={<BarUrl elem={elem}/>}></Route>
+                return <Route path={`/bar/${elem.name}`} element={<BarUrl elem={elem} key={elem.name} uptadeFoodkList={props.uptadeFoodkList}/>}></Route>
             })}
         </Routes>
     )

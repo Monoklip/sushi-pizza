@@ -54,7 +54,7 @@ const SalateItem = (props: { elem: { name: string; price: number; gramm: number;
                 </div>
             </Link>
             <div className="salate-item-buy">
-                <div className="salate-item-buy-price">{price} грн <span> / {gramm} грам</span></div>
+                <div className="salate-item-buy-price">{price} грн <span> / {gramm} гр</span></div>
                 {btnNone && 
                     <button className="salate-item-buy-btn-green" onClick={salateBtn}>Замовити</button>    
                 }

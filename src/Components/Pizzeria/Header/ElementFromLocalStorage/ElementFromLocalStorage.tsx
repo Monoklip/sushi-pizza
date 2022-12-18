@@ -77,6 +77,23 @@ const ElementFromLocalStorage = (props: { elem: { name: string; price: number; i
         localStorage.setItem('Food', JSON.stringify(food));
         setFood(JSON.parse(localStorage.getItem('Food') as string) || []);
     },[number]);
+
+    
+
+    const deleteBtn = () => {
+        const food = JSON.parse(localStorage.getItem('Food') as string) || [];
+
+        const filterDelete = (item: { name: string; }) => {
+            if(item.name !== name){
+                return true
+            }
+        };
+
+        const newFood = food.filter(filterDelete);
+
+        localStorage.setItem('Food', JSON.stringify(newFood));
+        setFood(JSON.parse(localStorage.getItem('Food') as string) || []);
+    };
     
     return(
         <div className='elementFromLocalStorage'>
@@ -94,6 +111,9 @@ const ElementFromLocalStorage = (props: { elem: { name: string; price: number; i
                 </div>
             </div>
             <div className="elementFromLocalStorage-price">
+                <button className="elementFromLocalStorage-price-delete" onClick={deleteBtn}>
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/bf/Icon_close.svg/2048px-Icon_close.svg.png" alt="" />
+                </button>
                 <h4>{sum}</h4>
                 <p>грн</p>
             </div>

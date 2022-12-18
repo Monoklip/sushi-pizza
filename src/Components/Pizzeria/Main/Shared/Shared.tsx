@@ -15,8 +15,8 @@ const Shared = () => {
 
     return(
         <div className='shared'>
-            {sharedData.map(elem => {
-                return <SharedItem elem={elem}/>
+            {sharedData.map((elem: { name: string; image: string; info: string; id: number}) => {
+                return <SharedItem elem={elem} key={elem.id}/>
             })}
         </div>
     )

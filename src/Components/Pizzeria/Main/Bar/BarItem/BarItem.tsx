@@ -55,7 +55,7 @@ const BarItem = (props: { elem: { name: string; price: number; gramm: number; ba
                 </div>
             </Link>
             <div className="bar-item-buy">
-                <div className="bar-item-buy-price">{price} грн <span> / {gramm} грам</span></div>
+                <div className="bar-item-buy-price">{price} грн <span> / {gramm} мл</span></div>
                 {btnNone && 
                     <button className="bar-item-buy-btn-green" onClick={barBtn}>Замовити</button>    
                 }

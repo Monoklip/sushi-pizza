@@ -39,5 +39,18 @@
     }
     .elementFromLocalStorage-price{
         width: 30px;
+
+        .elementFromLocalStorage-price-delete{
+            width: 60%;
+            border: none;
+            background: white;
+            margin: 0 auto;
+
+            img{
+                width: 100%;
+                margin: 0 auto;
+                cursor: pointer;
+            }
+        }
     }
 }
