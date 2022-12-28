@@ -1,29 +1,40 @@
 import { SetStateAction, useEffect, useState } from 'react';
+import { validName, validNumber, validPhone, validMessage } from '../../../Regexp/Regexp';
 import './feedback.scss';
 import FeedbackItem from './FeedbackItem/FeedbackItem';
 
 const Feedback = () => {
 
-    const [urlReviews, setUrlReviews] = useState('http://localhost:3000/reviews');
+    const [urlReviews, setUrlReviews] = useState<string>('http://localhost:3000/reviews');
     const [reviews, setReviews] = useState([]);
 
     const[urlGoodCheck, setUrlGoodCheck] = useState('http://localhost:3000/good-check');
     const[dataGoodCheck, setDataGoodCheck] = useState([]);
 
-    const[urlBadCheck, setUrlBadCheck] = useState('http://localhost:3000/bad-check');
+    const[urlBadCheck, setUrlBadCheck] = useState<string>('http://localhost:3000/bad-check');
     const[dataBadCheck, setDataBadCheck] = useState([]);
 
-    const [numberFeedback, setNumberFeedback] = useState(0);
-    const [numPositiv, setNumPositiv] = useState(0);
-    const [numNegativ, setNumNegativ] = useState(0);
+    const [numberFeedback, setNumberFeedback] = useState<number>(0);
+    const [numPositiv, setNumPositiv] = useState<number>(0);
+    const [numNegativ, setNumNegativ] = useState<number>(0);
 
-    const [nameUser, setNameUser] = useState('');
-    const [numberUser, setNumberUser] = useState('');
-    const [phoneUser, setPhoneUser] = useState('');
-    const [messageUser, setMessageUser] = useState('');
+    const [nameUser, setNameUser] = useState<string>('');
+    const [numberUser, setNumberUser] = useState<string>('');
+    const [phoneUser, setPhoneUser] = useState<string>('');
+    const [messageUser, setMessageUser] = useState<string>('');
 
-    const [goodCheck, setGoodCheck] = useState(false);
-    const [badCheck, setBadCheck] = useState(false);
+    const [nameUserValue, setNameUserValue] = useState<undefined>();
+    const [numberUserValue, setNumberUserValue] = useState<undefined>();
+    const [phoneUserValue, setPhoneUserValue] = useState<undefined>();
+    const [messageUserValue, setMessageUserValue] = useState<undefined>();
+
+    const [goodCheck, setGoodCheck] = useState<boolean>(false);
+    const [badCheck, setBadCheck] = useState<boolean>(false);
+
+    const [validBorderName, setValidBorderName] = useState<string>('black');
+    const [validBorderNumber, setValidBorderNumber] = useState<string>('black');
+    const [validBorderPhone, setValidBorderPhone] = useState<string>('black');
+    const [validBorderMessage, setValidBorderMessage] = useState<string>('black');
 
     const goodCheckHandleCheck = () => {
         setGoodCheck(!goodCheck);
@@ -35,20 +46,24 @@ const Feedback = () => {
         setGoodCheck(false);
     };
 
-    const nameUserHandleChange = (event: { target: { value: SetStateAction<string>; }; }) => {
-        setNameUser(event.target.value);
+    const nameUserHandleChange = (event: { target: { value: SetStateAction<string> | SetStateAction<undefined>; }; }) => {
+        setNameUser(event.target.value as unknown as string);
+        setNameUserValue(event.target.value as unknown as undefined);
     };
 
-    const numberUserHandleChange = (event: { target: { value: SetStateAction<string>; }; }) => {
-        setNumberUser(event.target.value);
+    const numberUserHandleChange = (event: { target: { value: SetStateAction<string> | SetStateAction<undefined>; }; }) => {
+        setNumberUser(event.target.value as unknown as string);
+        setNumberUserValue(event.target.value as unknown as undefined);
     };
 
-    const phoneUserHandleChange = (event: { target: { value: SetStateAction<string>; }; }) => {
-        setPhoneUser(event.target.value);
+    const phoneUserHandleChange = (event: { target: { value: SetStateAction<string> | SetStateAction<undefined>; }; }) => {
+        setPhoneUser(event.target.value as unknown as string);
+        setPhoneUserValue(event.target.value as unknown as undefined);
     };
 
-    const messageUserHandleChange = (event: { target: { value: SetStateAction<string>; }; }) => {
-        setMessageUser(event.target.value);
+    const messageUserHandleChange = (event: { target: { value: SetStateAction<string> | SetStateAction<undefined>; }; }) => {
+        setMessageUser(event.target.value as unknown as string);
+        setMessageUserValue(event.target.value as unknown as undefined);
     };
 
     const feedbackBtn = async() => {
@@ -92,7 +107,7 @@ const Feedback = () => {
     }
 
     const createBtn = async() => {
-        if(nameUser.trim() !== '' && numberUser.trim() !== '' && phoneUser.trim() !== '' && messageUser.trim() !== ''){
+        if(validName.test(nameUser) && validNumber.test(numberUser) && validPhone.test(phoneUser) && validMessage.test(messageUser)){
             const response = await fetch(urlReviews, {
                 method: "POST",
                 body: JSON.stringify({
@@ -106,6 +121,19 @@ const Feedback = () => {
                     "Content-Type": "application/json",
                 },
             });
+
+            setNameUserValue('' as unknown as undefined);
+            setNameUser('');
+
+            setNumberUserValue('' as unknown as undefined);
+            setNumberUser('');
+
+            setPhoneUserValue('' as unknown as undefined);
+            setPhoneUser('');
+
+            setMessageUserValue('' as unknown as undefined);
+            setMessageUser('');
+
             if(badCheck === true){
                 const response = await fetch(urlBadCheck, {
                     method: "POST",
@@ -130,8 +158,56 @@ const Feedback = () => {
             };
         }
         else{
-            alert('Заповніть всі поля');
+            alert('Невірно заповнені поля');
         };
+    };
+
+    const validBtnName = () => {
+        if(validName.test(nameUser)){
+            setValidBorderName('green');
+        }
+        else if(nameUser === ''){
+            setValidBorderName('black');
+        }
+        else{
+            setValidBorderName('red');
+        }
+    };
+
+    const validBtnNumber = () => {
+        if(validNumber.test(numberUser)){
+            setValidBorderNumber('green');
+        }
+        else if(numberUser === ''){
+            setValidBorderNumber('black');
+        }
+        else{
+            setValidBorderNumber('red');
+        }
+    };
+
+    const validBtnPhone = () => {
+        if(validPhone.test(phoneUser)){
+            setValidBorderPhone('green');
+        }
+        else if(phoneUser === ''){
+            setValidBorderPhone('black');
+        }
+        else{
+            setValidBorderPhone('red');
+        }
+    };
+
+    const validBtnMessage = () => {
+        if(validMessage.test(messageUser)){
+            setValidBorderMessage('green');
+        }
+        else if(messageUser === ''){
+            setValidBorderMessage('black');
+        }
+        else{
+            setValidBorderMessage('red');
+        }
     };
 
     return(
@@ -160,12 +236,35 @@ const Feedback = () => {
                 <h1>Залишити відгук</h1>
                 <div className="feedback-reviews-write">
                     <div className="feedback-reviews-write-text">
-                        <textarea placeholder='Повідомлення' onChange={messageUserHandleChange}></textarea>
+                        <textarea 
+                            style={{borderColor: `${validBorderMessage}`}} 
+                            placeholder='Повідомлення' 
+                            onChange={messageUserHandleChange} 
+                            onKeyUp={validBtnMessage}
+                            value={messageUserValue}></textarea>
                     </div>
-                    <div className="feedback-reviews-write-data">
-                        <input type="text" placeholder='Номер замовлення' onChange={numberUserHandleChange}/>
-                        <input type="text" placeholder="Ваше Ім'я" onChange={nameUserHandleChange}/>
-                        <input type="text" placeholder='Телефон' onChange={phoneUserHandleChange}/>
+                    <div className="feedback-reviews-write-data">                            
+                        <input 
+                            type="text" 
+                            style={{borderColor: `${validBorderNumber}`}} 
+                            placeholder='Номер замовлення' 
+                            onChange={numberUserHandleChange} 
+                            onKeyUp={validBtnNumber} 
+                            value={numberUserValue}/>
+                        <input 
+                            type="text" 
+                            style={{borderColor: `${validBorderName}`}} 
+                            placeholder="Ваше Ім'я" 
+                            onChange={nameUserHandleChange} 
+                            onKeyUp={validBtnName} 
+                            value={nameUserValue}/>
+                        <input 
+                            type="text" 
+                            style={{borderColor: `${validBorderPhone}`}} 
+                            placeholder='Телефон' 
+                            onChange={phoneUserHandleChange} 
+                            onKeyUp={validBtnPhone}
+                            value={phoneUserValue}/>
                         <div className="feedback-reviews-write-data-checkbox">
                             <input type="checkbox" checked={goodCheck} onChange={goodCheckHandleCheck}/>Все супер
                             <input type="checkbox" checked={badCheck} onChange={badCheckHandleCheck}/>Не задоволений
