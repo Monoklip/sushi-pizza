@@ -1,11 +1,11 @@
-import './not-page-found.scss';
+import "./not-page-found.scss";
 
-const NotPageFound =() => {
-    return(
+const NotPageFound = () => {
+    return (
         <div className="not-page-found">
             <h1>Такої сторінки не існує</h1>
-        </div>  
-    )
+        </div>
+    );
 };
 
 export default NotPageFound;

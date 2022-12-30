@@ -1,16 +1,15 @@
-import { SetStateAction, useState } from 'react';
-import './admin.scss';
-import DisplayBar from './DisplayBar/DisplayBar';
-import DisplayComments from './DisplayComments/DisplayComments';
-import DisplayPizza from './DisplayPizza/DisplayPizza';
-import DisplaySalate from './DisplaySalate/DisplaySalate';
-import DisplayShared from './DisplayShared/DisplayShared';
-import DisplaySushi from './DisplaySushi/DisplaySushi';
+import { SetStateAction, useState } from "react";
+import "./admin.scss";
+import DisplayBar from "./DisplayBar/DisplayBar";
+import DisplayComments from "./DisplayComments/DisplayComments";
+import DisplayPizza from "./DisplayPizza/DisplayPizza";
+import DisplaySalate from "./DisplaySalate/DisplaySalate";
+import DisplayShared from "./DisplayShared/DisplayShared";
+import DisplaySushi from "./DisplaySushi/DisplaySushi";
 
 const Admin = () => {
-
-    const [login, seLogin] = useState<string>('');
-    const [password, setPassword] = useState<string>('');
+    const [login, seLogin] = useState<string>("");
+    const [password, setPassword] = useState<string>("");
 
     const [displaySingIn, setDisplaySingIn] = useState<boolean>(true);
     const [displaySetting, setDisplaySetting] = useState<boolean>(false);
@@ -22,21 +21,43 @@ const Admin = () => {
     const [displayComments, setDisplayComments] = useState<boolean>(false);
     const [displayShared, setDisplayShared] = useState<boolean>(false);
 
-    const loginHandleChange = (event: { target: { value: SetStateAction<string>; }; }) => {
+    const [loginBorder, setLoginBorder] = useState<string>("rgb(16, 98, 192)");
+    const [passwordBorder, setPasswordBorder] = useState<string>("rgb(16, 98, 192)");
+
+    const loginHandleChange = (event: {target: { value: SetStateAction<string> };}) => {
         seLogin(event.target.value);
     };
 
-    const passwordHandleChange = (event: { target: { value: SetStateAction<string>; }; }) => {
+    const passwordHandleChange = (event: {target: { value: SetStateAction<string> };}) => {
         setPassword(event.target.value);
     };
 
+    const validKeyLogin = () => {
+        if (login === "admin") {
+            setLoginBorder("green");
+        } else if (login === "") {
+            setLoginBorder("rgb(16, 98, 192)");
+        } else {
+            setLoginBorder("red");
+        }
+    };
+
+    const validKeyPassword = () => {
+        if (password === "admin") {
+            setPasswordBorder("green");
+        } else if (password === "") {
+            setPasswordBorder("rgb(16, 98, 192)");
+        } else {
+            setPasswordBorder("red");
+        }
+    };
+
     const singInBtn = () => {
-        if(login === 'admin' && password === 'admin'){
+        if (login === "admin" && password === "admin") {
             setDisplaySingIn(false);
             setDisplaySetting(true);
-        }
-        else{
-            alert('Постороннім вхід заборонено');
+        } else {
+            alert("Постороннім вхід заборонено");
         }
     };
 
@@ -94,56 +115,93 @@ const Admin = () => {
         setDisplayShared(true);
     };
 
-    return(
-        <div className='admin'>
-            {displaySingIn &&
+    return (
+        <div className="admin">
+            {displaySingIn && (
                 <div className="admin-login">
                     <h1>Вхід</h1>
-                    <input type="text" placeholder='Login' onChange={loginHandleChange}/>
-                    <input type="password" placeholder='Password' onChange={passwordHandleChange}/><br />
+                    <input
+                        type="text"
+                        style={{
+                            boxShadow: `0 0 5px 1px ${loginBorder}`,
+                            border: `1px solid ${loginBorder}`,
+                        }}
+                        placeholder="Login"
+                        onChange={loginHandleChange}
+                        onKeyUp={validKeyLogin}
+                    />
+                    <input
+                        type="password"
+                        style={{
+                            boxShadow: `0 0 5px 1px ${passwordBorder}`,
+                            border: `1px solid ${passwordBorder}`,
+                        }}
+                        placeholder="Password"
+                        onChange={passwordHandleChange}
+                        onKeyUp={validKeyPassword}
+                    />
+                    <br />
                     <button onClick={singInBtn}>Увійти</button>
                 </div>
-            }
-            {displaySetting &&
+            )}
+            {displaySetting && (
                 <div className="admin-setting">
                     <div className="admin-setting-position">
-                        <div className="admin-setting-position-item" onClick={displaySushiBtn}>
-                            <img src="https://panda-sushi.com.ua/img/main-panda-sushi.png" alt="" />
+                        <div
+                            className="admin-setting-position-item"
+                            onClick={displaySushiBtn}
+                        >
+                            <img src="https://panda-sushi.com.ua/img/main-panda-sushi.png"/>
                             <h3>Суші</h3>
                         </div>
-                        <div className="admin-setting-position-item" onClick={displayPizzaBtn}>
-                            <img src="https://panda-sushi.com.ua/img/main-panda-pizza.png" alt="" />
+                        <div
+                            className="admin-setting-position-item"
+                            onClick={displayPizzaBtn}
+                        >
+                            <img src="https://panda-sushi.com.ua/img/main-panda-pizza.png"/>
                             <h3>Піца</h3>
                         </div>
-                        <div className="admin-setting-position-item" onClick={displaySalateBtn}>
-                            <img src="https://panda-sushi.com.ua/img/main-panda-salad.png" alt="" />
+                        <div
+                            className="admin-setting-position-item"
+                            onClick={displaySalateBtn}
+                        >
+                            <img src="https://panda-sushi.com.ua/img/main-panda-salad.png"/>
                             <h3>Салати</h3>
                         </div>
-                        <div className="admin-setting-position-item" onClick={displayBarBtn}>
-                            <img src="https://panda-sushi.com.ua/img/main-panda-bar.png" alt="" />
+                        <div
+                            className="admin-setting-position-item"
+                            onClick={displayBarBtn}
+                        >
+                            <img src="https://panda-sushi.com.ua/img/main-panda-bar.png"/>
                             <h3>Напої</h3>
                         </div>
-                        <div className="admin-setting-position-item" onClick={displayCommentsBtn}>
-                            <img src="https://st2.depositphotos.com/2081021/5642/v/950/depositphotos_56420481-stock-illustration-panda-sushi.jpg" alt="" />
+                        <div
+                            className="admin-setting-position-item"
+                            onClick={displayCommentsBtn}
+                        >
+                            <img src="https://st2.depositphotos.com/2081021/5642/v/950/depositphotos_56420481-stock-illustration-panda-sushi.jpg"/>
                             <h3>Відгуки</h3>
                         </div>
-                        <div className="admin-setting-position-item" onClick={displaySharedBtn}>
-                            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcROt8dKV2HcPqaEXWxaSBKPZhAnXrNHluLc2w&usqp=CAU" alt="" />
+                        <div
+                            className="admin-setting-position-item"
+                            onClick={displaySharedBtn}
+                        >
+                            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcROt8dKV2HcPqaEXWxaSBKPZhAnXrNHluLc2w&usqp=CAU"/>
                             <h3>Акції</h3>
                         </div>
                     </div>
                     <div className="admin-setting-GetAndDelete">
                         {displaySushi && <DisplaySushi />}
-                        {displayPizza && <DisplayPizza/>}
-                        {displaySalate && <DisplaySalate/>}
-                        {displayBar && <DisplayBar/>}
-                        {displayComments && <DisplayComments/>}
-                        {displayShared && <DisplayShared/>}
+                        {displayPizza && <DisplayPizza />}
+                        {displaySalate && <DisplaySalate />}
+                        {displayBar && <DisplayBar />}
+                        {displayComments && <DisplayComments />}
+                        {displayShared && <DisplayShared />}
                     </div>
                 </div>
-            }
+            )}
         </div>
-    )
+    );
 };
 
 export default Admin;

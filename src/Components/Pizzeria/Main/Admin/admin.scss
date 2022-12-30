@@ -1,7 +1,7 @@
-.admin{
+.admin {
     padding: 0 100px;
 
-    .admin-login{
+    .admin-login {
         width: 300px;
         height: 200px;
         text-align: center;
@@ -10,20 +10,20 @@
         border: 1px solid #9cc000;
         border-radius: 10px;
 
-        input{
+        input {
             width: 200px;
             height: 20px;
             margin-top: 10px;
             text-align: center;
             border: 1px solid #9cc000;
 
-            &:focus{
+            &:focus {
                 outline: none;
                 border: 1px solid rgb(16, 98, 192);
                 box-shadow: 0 0 5px 1px rgb(16, 98, 192);
             }
         }
-        button{
+        button {
             width: 200px;
             height: 20px;
             border: none;
@@ -35,21 +35,21 @@
         }
     }
 
-    .admin-setting{
-        .admin-setting-position{
+    .admin-setting {
+        .admin-setting-position {
             display: flex;
             justify-content: space-around;
 
-            .admin-setting-position-item{
+            .admin-setting-position-item {
                 height: 150px;
                 text-align: center;
                 color: grey;
                 cursor: pointer;
-                
-                &:hover{
+
+                &:hover {
                     color: #9cc000;
                 }
-                img{
+                img {
                     height: 100%;
                 }
             }
@@ -57,28 +57,32 @@
     }
 }
 
-@media screen and (max-width: 1130px){
-    .admin{
+@media screen and (max-width: 1130px) {
+    .admin {
         padding: 0 10px;
     }
 }
 
-@media screen and (max-width: 1000px){
-    .admin .admin-setting .admin-setting-position .admin-setting-position-item img{
+@media screen and (max-width: 1000px) {
+    .admin
+        .admin-setting
+        .admin-setting-position
+        .admin-setting-position-item
+        img {
         display: none;
     }
-    .admin .admin-setting .admin-setting-position{
+    .admin .admin-setting .admin-setting-position {
         display: block;
     }
-    .admin .admin-setting .admin-setting-position .admin-setting-position-item{
+    .admin .admin-setting .admin-setting-position .admin-setting-position-item {
         width: auto;
         height: auto;
         font-size: 30px;
     }
 }
 
-@media screen and (max-width: 500px){
-    .admin{
+@media screen and (max-width: 500px) {
+    .admin {
         padding: 0;
     }
 }

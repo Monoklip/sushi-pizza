@@ -1,49 +1,49 @@
-.header{
+.header {
     width: 100%;
     height: 175px;
-    background: url('https://panda-pizza.com.ua/img/desk-header-bg.png') center;
+    background: url("https://panda-pizza.com.ua/img/desk-header-bg.png") center;
     padding: 20px 100px;
     box-sizing: border-box;
     display: flex;
 
-    .header-lviv{
+    .header-lviv {
         width: 75px;
         border-bottom: 1px solid white;
 
-        img{
+        img {
             height: 70%;
-        
-            &:hover{
+
+            &:hover {
                 background: rgba(0, 0, 0, 0.2);
                 border-radius: 5px;
             }
         }
     }
-    .header-info{
+    .header-info {
         width: 35%;
         height: 100px;
         margin-left: 20px;
 
-        .header-info-internet{
+        .header-info-internet {
             width: 100%;
             display: flex;
 
-            .header-info-internet-link{
+            .header-info-internet-link {
                 width: 30%;
                 display: flex;
                 justify-content: space-evenly;
-                
-                .header-info-internet-link-image{
+
+                .header-info-internet-link-image {
                     width: 30px;
                     height: 30px;
                     display: flex;
 
-                    img{
+                    img {
                         width: 100%;
                     }
                 }
             }
-            .header-info-internet-time{
+            .header-info-internet-time {
                 width: 70%;
                 display: flex;
                 justify-content: center;
@@ -51,25 +51,25 @@
                 color: white;
             }
         }
-        .header-info-pages{
+        .header-info-pages {
             width: 100%;
             display: flex;
             justify-content: space-evenly;
             align-items: center;
 
-            a{
+            a {
                 margin-top: 50px;
                 color: white;
                 text-decoration: none;
                 font-size: 1em;
 
-                &:hover{
+                &:hover {
                     color: #9cc000;
                 }
             }
         }
     }
-    .header-logo{
+    .header-logo {
         width: 20%;
         margin-left: 75px;
         border-radius: 50%;
@@ -79,75 +79,75 @@
         margin-top: -10px;
         cursor: pointer;
 
-        a{
+        a {
             border-radius: 50%;
             padding: 20px;
             box-sizing: border-box;
             color: white;
             font-size: 30px;
-            
-            img{
+
+            img {
                 width: 80%;
                 margin-top: 15px;
                 margin-left: -5px;
             }
-            span{
+            span {
                 display: none;
             }
         }
 
-        &:hover{
+        &:hover {
             transform: scale(1.01);
         }
     }
-    .header-info-right{
+    .header-info-right {
         width: 50%;
         height: 100px;
         margin-left: 20px;
 
-        .header-info-right-number{
+        .header-info-right-number {
             width: 100%;
             display: flex;
 
-            .header-info-right-number-street{
+            .header-info-right-number-street {
                 width: 30%;
                 font-size: 16px;
 
-                span{
+                span {
                     color: white;
                     cursor: pointer;
                 }
             }
-            .header-info-right-number-phone{
+            .header-info-right-number-phone {
                 color: white;
             }
         }
-        .header-info-right-info{
+        .header-info-right-info {
             width: 100%;
             display: flex;
 
-            .header-info-right-info-vacancy{
+            .header-info-right-info-vacancy {
                 width: 35%;
                 margin-top: 30px;
                 margin-left: 40px;
                 display: flex;
                 justify-content: space-between;
-                
-                a{
+
+                a {
                     color: white;
                     text-decoration: none;
                     height: 10px;
 
-                    &:hover{
+                    &:hover {
                         color: #9cc000;
                     }
                 }
             }
 
-            .header-info-right-info-basket{
+            .header-info-right-info-basket {
                 width: 65%;
 
-                .header-info-right-info-basket-btn{
+                .header-info-right-info-basket-btn {
                     width: 250px;
                     height: 40px;
                     margin: 15px 0 0 20px;
@@ -159,7 +159,7 @@
                     align-items: center;
                     cursor: pointer;
                 }
-                .header-info-right-info-basket-buy{
+                .header-info-right-info-basket-buy {
                     width: 250px;
                     margin: 0 0 0 20px;
                     border-radius: 10px;
@@ -170,8 +170,8 @@
                     box-sizing: border-box;
                     z-index: 1;
                     position: relative;
-                    
-                    .header-info-right-info-basket-buy-btn{
+
+                    .header-info-right-info-basket-buy-btn {
                         width: 100%;
                         height: 30px;
                         border-radius: 5px;
@@ -182,11 +182,11 @@
                         margin-top: 5px;
                         cursor: pointer;
 
-                        &:hover{
+                        &:hover {
                             background: #688000;
                         }
                     }
-                    input{
+                    input {
                         width: 100%;
                         height: 30px;
                         padding: 0 10px;
@@ -200,29 +200,33 @@
     }
 }
 
-@media screen and (max-width: 1420px){
-    .header .header-info-right .header-info-right-info .header-info-right-info-vacancy a{
+@media screen and (max-width: 1420px) {
+    .header
+        .header-info-right
+        .header-info-right-info
+        .header-info-right-info-vacancy
+        a {
         font-size: 14px;
     }
-    .header .header-info .header-info-pages a{
+    .header .header-info .header-info-pages a {
         font-size: 14px;
     }
-    .header .header-logo{
+    .header .header-logo {
         margin-left: 70px;
     }
 }
 
-@media screen and (max-width: 1400px){
-    .header .header-logo{
+@media screen and (max-width: 1400px) {
+    .header .header-logo {
         margin-left: 65px;
     }
 }
 
-@media screen and (max-width: 1350px){
-    .header .header-logo{
+@media screen and (max-width: 1350px) {
+    .header .header-logo {
         margin-left: 60px;
     }
-    .header{
+    .header {
         padding: 20px 20px;
     }
     .header .header-logo {
@@ -230,35 +234,43 @@
     }
 }
 
-@media screen and (max-width: 1325px){
-    .header .header-info .header-info-internet .header-info-internet-time h4{
+@media screen and (max-width: 1325px) {
+    .header .header-info .header-info-internet .header-info-internet-time h4 {
         font-size: 14px;
     }
-    .header .header-info-right .header-info-right-number .header-info-right-number-phone h1{
+    .header
+        .header-info-right
+        .header-info-right-number
+        .header-info-right-number-phone
+        h1 {
         font-size: 28px;
     }
 }
 
-@media screen and (max-width: 1280px){
-    .header .header-logo{
+@media screen and (max-width: 1280px) {
+    .header .header-logo {
         margin-left: 70px;
     }
-    .header .header-info-right .header-info-right-info .header-info-right-info-vacancy a{
+    .header
+        .header-info-right
+        .header-info-right-info
+        .header-info-right-info-vacancy
+        a {
         font-size: 12px;
     }
-    .header .header-info .header-info-pages a{
+    .header .header-info .header-info-pages a {
         font-size: 12px;
     }
 }
 
-@media screen and (max-width: 1240px){
-    .header .header-logo{
+@media screen and (max-width: 1240px) {
+    .header .header-logo {
         margin-left: 65px;
     }
 }
 
-@media screen and (max-width: 1200px){
-    .header .header-logo{
+@media screen and (max-width: 1200px) {
+    .header .header-logo {
         margin-left: 60px;
     }
     .home .home-item .home-item-box p {
@@ -266,202 +278,260 @@
     }
 }
 
-@media screen and (max-width: 1180px){
-    .header .header-info .header-info-internet .header-info-internet-link{
+@media screen and (max-width: 1180px) {
+    .header .header-info .header-info-internet .header-info-internet-link {
         width: 25%;
     }
-    .header .header-info .header-info-internet .header-info-internet-link .header-info-internet-link-image img{
+    .header
+        .header-info
+        .header-info-internet
+        .header-info-internet-link
+        .header-info-internet-link-image
+        img {
         width: 80%;
         height: 80%;
     }
 }
 
-@media screen and (max-width: 1160px){
-    .header .header-info-right .header-info-right-info .header-info-right-info-vacancy {
+@media screen and (max-width: 1160px) {
+    .header
+        .header-info-right
+        .header-info-right-info
+        .header-info-right-info-vacancy {
         margin-left: 30px;
     }
 }
 
-
-@media screen and (max-width: 1130px){
-    .header .header-info-right .header-info-right-number .header-info-right-number-phone h1{
+@media screen and (max-width: 1130px) {
+    .header
+        .header-info-right
+        .header-info-right-number
+        .header-info-right-number-phone
+        h1 {
         font-size: 24px;
     }
-    .header .header-lviv{
+    .header .header-lviv {
         width: 20px;
         border: none;
         margin: -15px 0 0 0;
     }
-    .header .header-lviv img{
+    .header .header-lviv img {
         height: 50px;
     }
-    .header .header-logo{
+    .header .header-logo {
         width: 90px;
         border: none;
         background: none;
         height: auto;
         margin: 0;
     }
-    .header .header-logo a{
+    .header .header-logo a {
         padding: 0;
     }
-    .header .header-logo a img{
+    .header .header-logo a img {
         width: 80px;
         margin: -20px 20px 0 -10px;
     }
-    .header{
+    .header {
         background-color: #9cc000;
         background-image: none;
         height: 54px;
         margin-bottom: 20px;
         padding: 20px 5px;
     }
-    .header .header-info .header-info-internet{
+    .header .header-info .header-info-internet {
         display: none;
     }
-    .header .header-info-right .header-info-right-number{
+    .header .header-info-right .header-info-right-number {
         display: none;
     }
-    .header .header-info{
+    .header .header-info {
         width: 50%;
     }
-    .header .header-info-right{
+    .header .header-info-right {
         margin-left: 0;
     }
-    .header .header-info .header-info-pages a{
+    .header .header-info .header-info-pages a {
         font-size: 20px;
         margin-top: 0;
 
-        &:hover{
+        &:hover {
             color: black;
         }
     }
-    .header .header-info-right .header-info-right-info .header-info-right-info-vacancy{
+    .header
+        .header-info-right
+        .header-info-right-info
+        .header-info-right-info-vacancy {
         margin-top: 0;
         margin-left: 0;
         width: 45%;
     }
-    .header .header-info-right .header-info-right-info .header-info-right-info-basket .header-info-right-info-basket-btn{
+    .header
+        .header-info-right
+        .header-info-right-info
+        .header-info-right-info-basket
+        .header-info-right-info-basket-btn {
         margin: -15px 0 0 20px;
     }
-    .header .header-info-right .header-info-right-info .header-info-right-info-vacancy a{
+    .header
+        .header-info-right
+        .header-info-right-info
+        .header-info-right-info-vacancy
+        a {
         font-size: 20px;
-        &:hover{
+        &:hover {
             color: black;
         }
     }
-    .header .header-info-right .header-info-right-info .header-info-right-info-basket .header-info-right-info-basket-btn{
+    .header
+        .header-info-right
+        .header-info-right-info
+        .header-info-right-info-basket
+        .header-info-right-info-basket-btn {
         font-size: 20px;
     }
 }
 
-@media screen and (max-width: 1100px){
-    .header .header-info-right .header-info-right-info .header-info-right-info-basket .header-info-right-info-basket-btn{
+@media screen and (max-width: 1100px) {
+    .header
+        .header-info-right
+        .header-info-right-info
+        .header-info-right-info-basket
+        .header-info-right-info-basket-btn {
         margin: -15px 0 0 15px;
     }
-    .header .header-info-right .header-info-right-info .header-info-right-info-vacancy {
+    .header
+        .header-info-right
+        .header-info-right-info
+        .header-info-right-info-vacancy {
         width: 48%;
     }
-    .header .header-logo a img{
+    .header .header-logo a img {
         margin: -20px 10px 0 -10px;
     }
 }
 
-@media screen and (max-width: 1065px){
-    .header .header-info-right .header-info-right-info .header-info-right-info-basket .header-info-right-info-basket-btn{
+@media screen and (max-width: 1065px) {
+    .header
+        .header-info-right
+        .header-info-right-info
+        .header-info-right-info-basket
+        .header-info-right-info-basket-btn {
         margin: -15px 0 0 10px;
     }
-    .header .header-info-right .header-info-right-info .header-info-right-info-vacancy {
+    .header
+        .header-info-right
+        .header-info-right-info
+        .header-info-right-info-vacancy {
         width: 50%;
     }
-    .header .header-info-right{
+    .header .header-info-right {
         margin-left: -10px;
     }
-    .header .header-logo a img{
+    .header .header-logo a img {
         margin: -20px 20px 0 -10px;
     }
 }
 
-@media screen and (max-width: 1050px){
+@media screen and (max-width: 1050px) {
     .header .header-info {
         width: 46%;
     }
 }
 
-@media screen and (max-width: 1020px){
-    .header .header-logo a img{
+@media screen and (max-width: 1020px) {
+    .header .header-logo a img {
         margin: -20px 10px 0 -10px;
     }
 }
 
-@media screen and (max-width: 1000px){
-    .header{
+@media screen and (max-width: 1000px) {
+    .header {
         display: block;
         height: 325px;
     }
-    .header .header-info .header-info-pages{
+    .header .header-info .header-info-pages {
         flex-direction: column;
     }
-    .header .header-info-right .header-info-right-info .header-info-right-info-vacancy{
+    .header
+        .header-info-right
+        .header-info-right-info
+        .header-info-right-info-vacancy {
         flex-direction: column;
         align-items: center;
         width: 100%;
         margin-top: 120px;
         text-align: center;
     }
-    .header .header-info-right .header-info-right-info{
+    .header .header-info-right .header-info-right-info {
         display: block;
     }
-    .header .header-info-right{
+    .header .header-info-right {
         width: 100%;
         margin: 0;
-        a{
+        a {
             margin-top: 5px;
         }
     }
-    .header .header-info{
+    .header .header-info {
         width: 100%;
         margin: 0;
         height: auto;
     }
-    .header .header-info .header-info-pages a{
+    .header .header-info .header-info-pages a {
         font-size: 30px;
     }
-    .header .header-info-right .header-info-right-info .header-info-right-info-vacancy a{
+    .header
+        .header-info-right
+        .header-info-right-info
+        .header-info-right-info-vacancy
+        a {
         font-size: 30px;
         margin-top: 25px;
     }
-    .header .header-lviv{
-        width: 100%;   
+    .header .header-lviv {
+        width: 100%;
     }
-    .header .header-lviv img{
+    .header .header-lviv img {
         width: 50px;
         margin: 0 auto;
     }
-    .header .header-logo a img{
+    .header .header-logo a img {
         display: none;
     }
-    .header .header-logo a span{
+    .header .header-logo a span {
         display: block;
         margin-top: -175px;
 
-        &:hover{
+        &:hover {
             color: red;
         }
     }
-    .header .header-logo{
+    .header .header-logo {
         width: 100%;
         margin: 0;
         text-align: center;
     }
 
-    .header .header-info-right .header-info-right-info .header-info-right-info-basket{
+    .header
+        .header-info-right
+        .header-info-right-info
+        .header-info-right-info-basket {
         width: 100%;
     }
-    .header .header-info-right .header-info-right-info .header-info-right-info-basket .header-info-right-info-basket-btn{
+    .header
+        .header-info-right
+        .header-info-right-info
+        .header-info-right-info-basket
+        .header-info-right-info-basket-btn {
         margin: 30px auto 5px auto;
     }
-    .header .header-info-right .header-info-right-info .header-info-right-info-basket .header-info-right-info-basket-buy{
+    .header
+        .header-info-right
+        .header-info-right-info
+        .header-info-right-info-basket
+        .header-info-right-info-basket-buy {
         margin: 0 auto;
     }
 }
