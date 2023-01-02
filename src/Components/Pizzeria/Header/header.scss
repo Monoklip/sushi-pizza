@@ -107,10 +107,11 @@
 
         .header-info-right-number {
             width: 100%;
+            height: 50px;
             display: flex;
 
             .header-info-right-number-street {
-                width: 30%;
+                width: 25%;
                 font-size: 16px;
 
                 span {
@@ -119,7 +120,81 @@
                 }
             }
             .header-info-right-number-phone {
+                width: 45%;
                 color: white;
+
+                h1{
+                    font-size: 24px;
+                }
+            }
+            .header-info-right-number-singIn {
+                width: 100px;
+                height: 30px;
+                margin-left: 20px;
+                border: 2px solid white;
+                border-radius: 5px;
+                background: #688000;
+                color: white;
+                font-size: 16px;
+                cursor: pointer;
+                
+                &:hover {
+                    background: white;
+                    border: 2px solid #688000;
+                    color: #688000;
+                }
+            }
+            .header-info-right-number-input {
+                width: 30%;
+                height: 20px;
+                margin-right: 20px;
+                text-align: center;
+                border-radius: 5px;
+            }
+            .header-info-right-number-btns{
+                width: 30%;
+
+                .header-info-right-number-btns-singIn {
+                    width: 100%;
+                    height: 23px;
+                    border: 1px solid white;
+                    border-radius: 5px;
+                    background: #688000;
+                    color: white;
+                    cursor: pointer;
+    
+                    &:hover {
+                        background: white;
+                        color: #688000;
+                    }
+                }
+                .header-info-right-number-btns-singUp {
+                    width: 100%;
+                    border: none;
+                    background: none;
+                    color: white;
+                    text-align: center;
+                    cursor: pointer;
+
+                    &:hover {
+                        color: black;
+                    }
+                }
+            }
+            .header-info-right-number-btnExit{
+                width: 100px;
+                height: 25px;
+                background: orange;
+                border: 1px solid orange;
+                color: white;
+                border-radius: 5px;
+                margin: 5px auto;
+                cursor: pointer;
+
+                &:hover{
+                    background: white;
+                    color: orange;
+                }
             }
         }
         .header-info-right-info {
@@ -243,7 +318,7 @@
         .header-info-right-number
         .header-info-right-number-phone
         h1 {
-        font-size: 28px;
+        font-size: 24px;
     }
 }
 

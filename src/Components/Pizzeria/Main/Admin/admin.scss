@@ -32,6 +32,23 @@
             color: white;
             margin-top: 20px;
             cursor: pointer;
+
+            &:hover {
+                background: #657c00;
+            }
+        }
+        .admin-login-singUp {
+            border: none;
+            color: #9cc000;
+            background: white;
+            cursor: pointer;
+            margin-top: 10px;
+            text-align: left;
+
+            &:hover {
+                background: white;
+                color: #657c00;
+            }
         }
     }
 
