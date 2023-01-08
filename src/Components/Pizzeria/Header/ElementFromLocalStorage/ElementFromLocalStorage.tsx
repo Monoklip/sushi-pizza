@@ -12,6 +12,10 @@ const ElementFromLocalStorage = (props: {
     };
     setFood: any;
     food: any;
+    setPrice: any;
+    price: any;
+    suma: any 
+    setSuma: any;
 }) => {
     const { name, price, image, gramm, num, sum } = props.elem;
 
@@ -46,6 +50,7 @@ const ElementFromLocalStorage = (props: {
                 }
             )
         );
+        props.setSuma(props.suma + price);
         localStorage.setItem("Food", JSON.stringify(food));
     };
 
@@ -78,6 +83,7 @@ const ElementFromLocalStorage = (props: {
                     }
                 )
             );
+            props.setSuma(props.suma - price);
             localStorage.setItem("Food", JSON.stringify(food));
         }
     };
@@ -90,16 +96,18 @@ const ElementFromLocalStorage = (props: {
     const deleteBtn = () => {
         const food = JSON.parse(localStorage.getItem("Food") as string) || [];
 
-        const filterDelete = (item: { name: string }) => {
+        const filterDelete = (item: { name: string; sum: number; }) => {
             if (item.name !== name) {
+                props.setPrice(props.price - sum);
                 return true;
             }
         };
 
         const newFood = food.filter(filterDelete);
-
+        
         localStorage.setItem("Food", JSON.stringify(newFood));
         setFood(JSON.parse(localStorage.getItem("Food") as string) || []);
+        props.setSuma(props.suma - (price * number));
     };
 
     return (

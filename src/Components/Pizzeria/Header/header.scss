@@ -410,7 +410,7 @@
     .header {
         background-color: #9cc000;
         background-image: none;
-        height: 54px;
+        height: 100px;
         margin-bottom: 20px;
         padding: 20px 5px;
     }
@@ -418,6 +418,14 @@
         display: none;
     }
     .header .header-info-right .header-info-right-number {
+        position: absolute;
+        width: 54%;
+        margin: 40px 0 0 -132px;
+    }
+    .header .header-info-right .header-info-right-number .header-info-right-number-street{
+        display: none;
+    }
+    .header .header-info-right .header-info-right-number .header-info-right-number-phone{
         display: none;
     }
     .header .header-info {
@@ -485,6 +493,9 @@
     .header .header-logo a img {
         margin: -20px 10px 0 -10px;
     }
+    .header .header-info-right .header-info-right-number {
+        margin: 40px 0 0 -122px;
+    }
 }
 
 @media screen and (max-width: 1065px) {
@@ -519,12 +530,15 @@
     .header .header-logo a img {
         margin: -20px 10px 0 -10px;
     }
+    .header .header-info-right .header-info-right-number {
+        margin: 40px 0 0 -115px;
+    }
 }
 
 @media screen and (max-width: 1000px) {
     .header {
         display: block;
-        height: 325px;
+        height: 410px;
     }
     .header .header-info .header-info-pages {
         flex-direction: column;
@@ -607,6 +621,41 @@
         .header-info-right-info
         .header-info-right-info-basket
         .header-info-right-info-basket-buy {
+        margin: 0 auto;
+    }
+    .header .header-info-right .header-info-right-number {
+        margin: 160px auto;
+        width: 98%;
+        text-align: center;
+        display: block;
+        justify-content: center;
+    }
+    .header .header-info-right .header-info-right-number .header-info-right-number-btns {
+        width: 32%;
+        margin: 10px auto;
+    }
+}
+@media screen and (max-width: 750px) {
+    .header .header-info-right .header-info-right-number .header-info-right-number-input{
+        margin-right: 10px;
+    }
+}
+@media screen and (max-width: 500px) {
+    .header{
+        height: 460px;
+    }
+    .header .header-info-right .header-info-right-number{
+       display: grid;
+       grid-template-columns: 1fr;
+    }
+    .header .header-info-right .header-info-right-number .header-info-right-number-input{
+        width: 250px;
+        margin: 0 auto;
+    }
+    .header .header-info-right .header-info-right-number .header-info-right-number-btns{
+        width: 150px;
+    }
+    .header .header-info-right .header-info-right-number .header-info-right-number-singIn{
         margin: 0 auto;
     }
 }

@@ -5,16 +5,18 @@ import ElementFromLocalStorage from "./ElementFromLocalStorage/ElementFromLocalS
 import "./header.scss";
 import UserAccount from "./UserAccount/UserAccount";
 
-const Header = (props: { food: any; setFood: any }) => {
-    const { setFood, food } = props;
+const Header = (props: { food: any; setFood: any; suma: any; setSuma: any; }) => {
+    const { setFood, food, suma, setSuma } = props;
 
-    const [buyDispay, setBuyDispay] = useState<boolean>(false);
-    const [buyDispayNone, setBuyDispayNone] = useState<boolean>(false);
-    const [buyDispayNext, setBuyDispayNext] = useState<boolean>(false);
+    const [buyDisplay, setBuyDisplay] = useState<boolean>(false);
+    const [buyDisplayNone, setBuyDisplayNone] = useState<boolean>(false);
+    const [buyDisplayNext, setBuyDisplayNext] = useState<boolean>(false);
     const [buyDisplayEnd, setBuyDisplayEnd] = useState<boolean>(false);
 
     const [position, setPosition] = useState<number>(0);
-    const [price, setPrice] = useState<number>(0);
+    const [price, setPrice] = useState<number>(suma);
+    const [discount, setDiscount] = useState<number>(0);
+    const [newSuma, setNewSuma] = useState<number>(suma-discount);
 
     const [phoneStreet, setPhoneStreet] = useState<string>("+38(063)604-42-93");
 
@@ -40,54 +42,60 @@ const Header = (props: { food: any; setFood: any }) => {
     useEffect(() => {
         setPosition(food.length);
 
-        for (let i = 0; i < food.length; i++) {
-            setPrice(price + food[i].sum);
-        }
+        localStorage.setItem('Suma', JSON.stringify(suma));
 
-        if (food.length && price < 150) {
-            setBuyDispayNone(true);
-            setBuyDispayNext(false);
-        } else if (food.length && price >= 150) {
-            setBuyDispayNone(false);
-            setBuyDispayNext(true);
+        setSuma(JSON.parse(localStorage.getItem('Suma') as string) || Number);
+        
+        if (food.length && suma < 150) {
+            setBuyDisplayNone(true);
+            setBuyDisplayNext(false);
+        } else if (food.length && suma >= 150) {
+            setBuyDisplayNone(false);
+            setBuyDisplayNext(true);
         } else {
-            setBuyDispayNone(true);
-            setBuyDispayNext(false);
-        }
+            setBuyDisplayNone(true);
+            setBuyDisplayNext(false);
+        };
+
+        setDiscount(suma / 100 * 10);
+        setNewSuma(suma - discount);
     }, [food.length]);
 
     const btnBuy = () => {
-        setBuyDispay(!buyDispay);
+        setBuyDisplay(!buyDisplay);
 
-        if (food.length && price < 150) {
-            setBuyDispayNone(true);
-            setBuyDispayNext(false);
+        if (food.length && suma < 150) {
+            setBuyDisplayNone(true);
+            setBuyDisplayNext(false);
             setBuyDisplayEnd(false);
-        } else if (food.length && price >= 150) {
-            setBuyDispayNone(false);
-            setBuyDispayNext(true);
+        } else if (food.length && suma >= 150) {
+            setBuyDisplayNone(false);
+            setBuyDisplayNext(true);
             setBuyDisplayEnd(false);
         } else {
-            setBuyDispayNone(true);
-            setBuyDispayNext(false);
+            setBuyDisplayNone(true);
+            setBuyDisplayNext(false);
             setBuyDisplayEnd(false);
         }
-    };
+    };    
 
     const btnBuyNone = () => {
-        setBuyDispay(false);
+        setBuyDisplay(false);
     };
 
     const btnBuyNext = () => {
-        setBuyDispayNone(false);
+        setBuyDisplayNone(false);
         setBuyDisplayEnd(true);
-        setBuyDispayNext(false);
+        setBuyDisplayNext(false);
+        
+        setDiscount(suma / 100 * 10);
+        setNewSuma(suma - discount);
     };
 
     const btnBuyEnd = () => {
-        setBuyDispayNext(true);
+        setBuyDisplayNext(true);
         setBuyDisplayEnd(false);
-        setBuyDispay(false);
+        setBuyDisplay(false);
     };
 
     const streetBtnSuhivska = () => {
@@ -144,7 +152,7 @@ const Header = (props: { food: any; setFood: any }) => {
 
         const filter = data.some((elem: { login: string; }) => elem.login === login);
 
-        if(filter === false){
+        if(filter === false && login !== 'admin'){
             const response = await fetch(url, {
                 method: "POST",
                 body: JSON.stringify({
@@ -164,19 +172,24 @@ const Header = (props: { food: any; setFood: any }) => {
     };
 
     const singInAccount = async() => {
-        const response = await fetch(url);
-        const datas = await response.json();
-        setDataAcc(datas);
+        if(login !== '' && password !== ''){
+            const response = await fetch(url);
+            const datas = await response.json();
+            setDataAcc(datas);
 
-        datas.filter((elem: { login: string; password: string; name: string; }) => {
-            if(login === elem.login && password === elem.password){
-                setDisplayStreet(false);
-                setDisplaySingIn(false);
-                setDisplaySingUp(false);
-                setDisplayUser(true);
-                setName(elem.name);
-            }
-        });
+            datas.filter((elem: { login: string; password: string; name: string; }) => {
+                if(login === elem.login && password === elem.password){
+                    setDisplayStreet(false);
+                    setDisplaySingIn(false);
+                    setDisplaySingUp(false);
+                    setDisplayUser(true);
+                    setName(elem.name);
+                }
+            });
+        }
+        else{
+            alert('Заповніть всі поля');
+        }
     };
 
     const exitAccountBtn = () => {
@@ -360,34 +373,13 @@ const Header = (props: { food: any; setFood: any }) => {
                             <span className="header-info-right-info-basket-btn-span">
                                 позицій -
                             </span>
-                            <span>{price}</span>
+                            <span>{suma}</span>
                             <span>грн</span>
                             <img src="https://panda-pizza.com.ua/img/arrow-down.png" />
                         </a>
-                        {buyDispay && (
+                        {buyDisplay && (
                             <>
-                                {buyDispayNone && (
-                                    <div className="header-info-right-info-basket-buy">
-                                        <p style={{ color: "grey" }}>
-                                            Сума до оплати:
-                                            <span style={{ color: "black" }}>
-                                                {" "}
-                                                {price} грн
-                                            </span>
-                                        </p>
-                                        <p style={{ color: "red" }}>
-                                            Мінімальна сума замовлення:
-                                        </p>
-                                        <p>150 грн</p>
-                                        <button
-                                            className="header-info-right-info-basket-buy-btn"
-                                            onClick={btnBuyNone}
-                                        >
-                                            Дозамовити страви
-                                        </button>
-                                    </div>
-                                )}
-                                {buyDispayNext && (
+                                {buyDisplayNone && (
                                     <div className="header-info-right-info-basket-buy">
                                         {food.map(
                                             (elem: {
@@ -405,6 +397,48 @@ const Header = (props: { food: any; setFood: any }) => {
                                                         key={elem.name}
                                                         setFood={setFood}
                                                         food={food}
+                                                        setPrice={setPrice}
+                                                        price={price}
+                                                        suma={props.suma} 
+                                                        setSuma={props.setSuma}
+                                                    />
+                                                );
+                                            }
+                                        )}
+                                        <p style={{ color: "red" }}>
+                                            Мінімальна сума замовлення:
+                                        </p>
+                                        <p>150 грн</p>
+                                        <button
+                                            className="header-info-right-info-basket-buy-btn"
+                                            onClick={btnBuyNone}
+                                        >
+                                            Дозамовити страви
+                                        </button>
+                                    </div>
+                                )}
+                                {buyDisplayNext && (
+                                    <div className="header-info-right-info-basket-buy">
+                                        {food.map(
+                                            (elem: {
+                                                name: string;
+                                                price: number;
+                                                image: string;
+                                                gramm: number;
+                                                num: number;
+                                                id: number;
+                                                sum: number;
+                                            }) => {
+                                                return (
+                                                    <ElementFromLocalStorage
+                                                        elem={elem}
+                                                        key={elem.name}
+                                                        setFood={setFood}
+                                                        food={food}
+                                                        setPrice={setPrice}
+                                                        price={price}
+                                                        suma={props.suma} 
+                                                        setSuma={props.setSuma}
                                                     />
                                                 );
                                             }
@@ -413,7 +447,7 @@ const Header = (props: { food: any; setFood: any }) => {
                                             Сума до оплати:
                                             <span style={{ color: "black" }}>
                                                 {" "}
-                                                {price} грн
+                                                {suma} грн
                                             </span>
                                         </p>
                                         <button
@@ -429,11 +463,29 @@ const Header = (props: { food: any; setFood: any }) => {
                                         <ElementBuyForm btnBuyEnd={btnBuyEnd} />
                                         <p style={{ color: "grey" }}>
                                             Сума до оплати:
-                                            <span style={{ color: "black" }}>
+                                            <span style={{ color: "grey" }}>
                                                 {" "}
-                                                {price} грн
+                                                {suma} грн
                                             </span>
                                         </p>
+                                        {displayUser &&
+                                            <>
+                                                <p style={{ color: "blue" }}>
+                                                    Ваша знижка:
+                                                    <span style={{ color: "blue" }}>
+                                                        {" "}
+                                                        {discount} грн
+                                                    </span>                                                
+                                                </p>
+                                                <p style={{ color: "green" }}>
+                                                    До оплати:
+                                                    <span style={{ color: "green" }}>
+                                                        {" "}
+                                                        {newSuma} грн
+                                                    </span>                                                
+                                                </p>
+                                            </>
+                                        }
                                         <p style={{ color: "red" }}>
                                             Доставка безкоштовно
                                         </p>
@@ -449,6 +501,3 @@ const Header = (props: { food: any; setFood: any }) => {
 };
 
 export default Header;
-function async() {
-    throw new Error("Function not implemented.");
-}

@@ -30,6 +30,8 @@ const Main = (props: {
     };
     food: any;
     setFood: any;
+    suma: any;
+    setSuma: any
 }) => {
     const [sushiUrl, setSushiUrl] = useState("http://localhost:3000/sushi");
     const [sushiData, setSushiData] = useState([]);
@@ -93,6 +95,8 @@ const Main = (props: {
                         uptadeFoodkList={props.uptadeFoodkList}
                         food={props.food}
                         setFood={props.setFood}
+                        suma={props.suma} 
+                        setSuma={props.setSuma}
                     />
                 }
             ></Route>

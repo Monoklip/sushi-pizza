@@ -14,6 +14,8 @@ const Sushi = (props: {
     }) => void;
     food: any;
     setFood: any;
+    suma: any; 
+    setSuma: any;
 }) => {
     const [sushi, setSushi] = useState([]);
     const [urlSushi, setUrlSushi] = useState("http://localhost:3000/sushi");
@@ -53,6 +55,8 @@ const Sushi = (props: {
                                 sushi={sushi}
                                 food={props.food}
                                 setFood={props.setFood}
+                                suma={props.suma} 
+                                setSuma={props.setSuma}
                             />
                         );
                     }

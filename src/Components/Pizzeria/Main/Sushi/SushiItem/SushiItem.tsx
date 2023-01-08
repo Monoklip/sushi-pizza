@@ -1,15 +1,34 @@
-import { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
-import './sushi-item.scss';
+import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
+import "./sushi-item.scss";
 
-const SushiItem = (props: { elem: { name: string; price: number; gramm: number; basket: string; image: string; num: number }; uptadeFoodkList: (arg0: { name: string; price: number; image: string; gramm: number; num: number; sum: number}) => void; sushi: any; food: any; setFood: any }) => {
+const SushiItem = (props: {
+    elem: {
+        name: string;
+        price: number;
+        gramm: number;
+        basket: string;
+        image: string;
+        num: number;
+    };
+    uptadeFoodkList: (arg0: {
+        name: string;
+        price: number;
+        image: string;
+        gramm: number;
+        num: number;
+        sum: number;
+    }) => void;
 
-    const { name,
-        price,
-        gramm,
-        basket,
-        image
-    } = props.elem;
+    sushi: any;
+    food: any;
+    setFood: any;
+    suma: any;
+    setSuma: any;
+}) => {
+    const { name, price, gramm, basket, image } = props.elem;
+
+    const [sumaAllFoods, setSumaAllFoods] = useState(JSON.parse(localStorage.getItem("Suma") as string) || Number);
 
     const sushiBtn = () => {
         props.uptadeFoodkList({
@@ -18,29 +37,33 @@ const SushiItem = (props: { elem: { name: string; price: number; gramm: number; 
             image: image,
             gramm: gramm,
             num: 1,
-            sum: price
+            sum: price,
         });
+
+        props.setSuma(price + props.suma);
+        localStorage.setItem("Suma", JSON.stringify(props.suma + sumaAllFoods));
     };
     const { food, setFood } = props;
 
     const [btnNone, setBtnNone] = useState(true);
     const [btnYes, setBtnYes] = useState(false);
 
-    const getFood = async() => {
-        food.map((elem: { name: string; }) => {
-            if(elem.name === name){
+    const getFood = async () => {
+        food.map((elem: { name: string }) => {
+            if (elem.name === name) {
                 setBtnNone(false);
                 setBtnYes(true);
-            }            
-        })
+            }
+        });
     };
 
-    useEffect(()=>{
+    useEffect(() => {
         getFood();
-    },[props.sushi]);
+        localStorage.setItem("Suma", JSON.stringify(props.suma));
+    }, [props.sushi]);
 
-    return(
-        <div className='sushi-item'>
+    return (
+        <div className="sushi-item">
             <Link to={`./${name}`}>
                 <div className="sushi-item-info">
                     <div className="sushi-item-info-image">
@@ -53,16 +76,28 @@ const SushiItem = (props: { elem: { name: string; price: number; gramm: number; 
                 </div>
             </Link>
             <div className="sushi-item-buy">
-                <div className="sushi-item-buy-price">{price} грн <span> / {gramm} гр</span></div>
-                {btnNone && 
-                    <button className="sushi-item-buy-btn-green" onClick={sushiBtn}>Замовити</button>    
-                }
-                {btnYes && 
-                    <button className="sushi-item-buy-btn-orange" onClick={sushiBtn}>Заказ прийнято</button>
-                }
+                <div className="sushi-item-buy-price">
+                    {price} грн <span> / {gramm} гр</span>
+                </div>
+                {btnNone && (
+                    <button
+                        className="sushi-item-buy-btn-green"
+                        onClick={sushiBtn}
+                    >
+                        Замовити
+                    </button>
+                )}
+                {btnYes && (
+                    <button
+                        className="sushi-item-buy-btn-orange"
+                        onClick={sushiBtn}
+                    >
+                        Заказ прийнято
+                    </button>
+                )}
             </div>
         </div>
-    )
+    );
 };
 
 export default SushiItem;
