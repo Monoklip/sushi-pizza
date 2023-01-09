@@ -2,14 +2,33 @@ import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import './salate-item.scss';
 
-const SalateItem = (props: { elem: { name: string; price: number; gramm: number; basket: string; image: string; num: number }; uptadeFoodkList: (arg0: { name: string; price: number; image: string; gramm: number; num: number; sum: number}) => void; salate: any }) => {
+const SalateItem = (props: {
+    elem: {
+        name: string;
+        price: number;
+        gramm: number;
+        basket: string;
+        image: string;
+        num: number;
+    };
+    uptadeFoodkList: (arg0: {
+        name: string;
+        price: number;
+        image: string;
+        gramm: number;
+        num: number;
+        sum: number;
+    }) => void;
 
-    const { name,
-        price,
-        gramm,
-        basket,
-        image
-    } = props.elem;
+    salate: any;
+    food: any;
+    setFood: any;
+    suma: any;
+    setSuma: any;
+}) => {
+    const { name, price, gramm, basket, image } = props.elem;
+
+    const [sumaAllFoods, setSumaAllFoods] = useState(JSON.parse(localStorage.getItem("Suma") as string) || Number);
 
     const salateBtn = () => {
         props.uptadeFoodkList({
@@ -18,27 +37,32 @@ const SalateItem = (props: { elem: { name: string; price: number; gramm: number;
             image: image,
             gramm: gramm,
             num: 1,
-            sum: price
+            sum: price,
         });
+
+        if(btnYes === false){
+            props.setSuma(price + props.suma);
+            localStorage.setItem("Suma", JSON.stringify(props.suma + sumaAllFoods));
+        }
     };
+    const { food, setFood } = props;
 
     const [btnNone, setBtnNone] = useState(true);
     const [btnYes, setBtnYes] = useState(false);
 
-    const food = JSON.parse(localStorage.getItem('Food') as string) || [];
-
-    const getFood = async() => {
-        food.map((elem: { name: string; }) => {
-            if(elem.name === name){
+    const getFood = async () => {
+        food.map((elem: { name: string }) => {
+            if (elem.name === name) {
                 setBtnNone(false);
                 setBtnYes(true);
-            }            
-        })
+            }
+        });
     };
 
-    useEffect(()=>{
+    useEffect(() => {
         getFood();
-    },[props.salate]);
+        localStorage.setItem("Suma", JSON.stringify(props.suma));
+    }, [props.salate]);
 
     return(
         <div className='salate-item'>
@@ -59,7 +83,7 @@ const SalateItem = (props: { elem: { name: string; price: number; gramm: number;
                     <button className="salate-item-buy-btn-green" onClick={salateBtn}>Замовити</button>    
                 }
                 {btnYes && 
-                    <button className="salate-item-buy-btn-orange" onClick={salateBtn}>Хочу ще</button>
+                    <button className="salate-item-buy-btn-orange" onClick={salateBtn}>Заказ прийнято</button>
                 }
             </div>
         </div>

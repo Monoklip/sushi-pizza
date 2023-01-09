@@ -32,6 +32,8 @@ const Header = (props: { food: any; setFood: any; suma: any; setSuma: any; }) =>
     const [name, setName] = useState<string>('');
     const [login, setLogin] = useState<string>('');
     const [password, setPassword] = useState<string>('');
+    const [singInBorderError, setSingInBorderError] = useState<string>('black');
+    const [singUpBorderError, setSingUpBorderError] = useState<string>('black');
 
     const [url, setUrl] = useState<string>("http://localhost:3000/accounts");
     const [dataAcc, setDataAcc] = useState([]);
@@ -88,8 +90,8 @@ const Header = (props: { food: any; setFood: any; suma: any; setSuma: any; }) =>
         setBuyDisplayEnd(true);
         setBuyDisplayNext(false);
         
-        setDiscount(suma / 100 * 10);
-        setNewSuma(suma - discount);
+        setDiscount(Math.round(suma / 100 * 10));
+        setNewSuma(Math.round(suma - discount));
     };
 
     const btnBuyEnd = () => {
@@ -136,6 +138,9 @@ const Header = (props: { food: any; setFood: any; suma: any; setSuma: any; }) =>
         setDisplaySingIn(true);
         setDisplaySingUp(false);
         setDisplayUser(false);
+
+        setSingInBorderError('black');
+        setSingUpBorderError('black');
     };
 
     const singUpBtn = () => {
@@ -143,6 +148,9 @@ const Header = (props: { food: any; setFood: any; suma: any; setSuma: any; }) =>
         setDisplaySingIn(false);
         setDisplaySingUp(true);
         setDisplayUser(false);
+
+        setSingInBorderError('black');
+        setSingUpBorderError('black');
     };
 
     const registrAccount = async() => {
@@ -152,7 +160,7 @@ const Header = (props: { food: any; setFood: any; suma: any; setSuma: any; }) =>
 
         const filter = data.some((elem: { login: string; }) => elem.login === login);
 
-        if(filter === false && login !== 'admin'){
+        if(filter === false && login !== 'admin' && login.trim() !== '' && password.trim() !== '' && name.trim() !== ''){
             const response = await fetch(url, {
                 method: "POST",
                 body: JSON.stringify({
@@ -165,9 +173,15 @@ const Header = (props: { food: any; setFood: any; suma: any; setSuma: any; }) =>
                 }
             });
             alert('Аккаунт успішно зареєстровано');
+
+            setDisplayStreet(false);
+            setDisplaySingIn(true);
+            setDisplaySingUp(false);
+            setDisplayUser(false);
         }
         else{
-            alert('Такий логін уже використовується');
+            // alert('Такий логін уже використовується');
+            setSingUpBorderError('red');
         }
     };
 
@@ -185,6 +199,9 @@ const Header = (props: { food: any; setFood: any; suma: any; setSuma: any; }) =>
                     setDisplayUser(true);
                     setName(elem.name);
                 }
+                else{
+                    setSingInBorderError('red')
+                }
             });
         }
         else{
@@ -199,6 +216,9 @@ const Header = (props: { food: any; setFood: any; suma: any; setSuma: any; }) =>
         setDisplayUser(false);
         setLinkDisplayAdmin(false);
         setLinkDisplayUser(true);
+
+        setSingInBorderError('black');
+        setSingUpBorderError('black');
     };
 
     const adminPanel = () => {
@@ -284,20 +304,24 @@ const Header = (props: { food: any; setFood: any; suma: any; setSuma: any; }) =>
                 )}
                 {displaySingIn && (
                     <div className="header-info-right-number">
-                        <input
-                            type="text"
-                            className="header-info-right-number-input"
-                            placeholder="Введіть логін"
-                            onChange={loginHandleChange}
-                            onKeyUp={adminPanel}
-                        />
-                        <input
-                            type="text"
-                            className="header-info-right-number-input"
-                            placeholder="Введіть пароль"
-                            onChange={passwordHandleChange}
-                            onKeyUp={adminPanel}
-                        />
+                        <div className="header-info-right-number-inputs">
+                            <input
+                                type="text"
+                                style={{borderColor: `${singInBorderError}`}}
+                                className="header-info-right-number-inputs-input"
+                                placeholder="Введіть логін"
+                                onChange={loginHandleChange}
+                                onKeyUp={adminPanel}
+                            />
+                            <input
+                                type="text"
+                                style={{borderColor: `${singInBorderError}`}}
+                                className="header-info-right-number-inputs-input"
+                                placeholder="Введіть пароль"
+                                onChange={passwordHandleChange}
+                                onKeyUp={adminPanel}
+                            />
+                        </div>
                         <div className="header-info-right-number-btns">
                             {linkDisplayUser &&
                                 <button className="header-info-right-number-btns-singIn" onClick={singInAccount}>
@@ -319,23 +343,29 @@ const Header = (props: { food: any; setFood: any; suma: any; setSuma: any; }) =>
                 )}
                 {displaySingUp &&
                     <div className="header-info-right-number">
-                        <input
-                            type="text"
-                            className="header-info-right-number-input"
-                            placeholder="Придумайте логін"
-                            onChange={loginHandleChange}
-                        />
-                        <input
-                            type="text"
-                            className="header-info-right-number-input"
-                            placeholder="Придумайте пароль"
-                            onChange={passwordHandleChange}
-                        />
-                        <input type="text"
-                            className="header-info-right-number-input" 
-                            placeholder="Вкажіть імя"
-                            onChange={nameHandleChange}
-                        />
+                        <div className="header-info-right-number-inputs">
+                            <input
+                                type="text"
+                                style={{borderColor: `${singUpBorderError}`}}
+                                className="header-info-right-number-inputs-input"
+                                placeholder="Придумайте логін"
+                                onChange={loginHandleChange}
+                            />
+                            <input
+                                type="text"
+                                style={{borderColor: `${singUpBorderError}`}}
+                                className="header-info-right-number-inputs-input"
+                                placeholder="Придумайте пароль"
+                                onChange={passwordHandleChange}
+                            />
+                            <input 
+                                type="text"
+                                style={{borderColor: `${singUpBorderError}`}}
+                                className="header-info-right-number-inputs-input" 
+                                placeholder="Вкажіть імя"
+                                onChange={nameHandleChange}
+                            />
+                        </div>
                         <div className="header-info-right-number-btns">
                             <button className="header-info-right-number-btns-singIn" onClick={registrAccount}>
                                 Зареєструватися

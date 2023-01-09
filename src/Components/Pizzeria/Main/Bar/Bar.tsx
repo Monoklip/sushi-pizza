@@ -12,6 +12,10 @@ const Bar = (props: {
         num: number;
         sum: number;
     }) => void;
+    food: any;
+    setFood: any;
+    suma: any; 
+    setSuma: any;
 }) => {
     const [urlBar, setUrlBar] = useState("http://localhost:3000/bar");
     const [bar, setBar] = useState([]);
@@ -45,10 +49,14 @@ const Bar = (props: {
                     }) => {
                         return (
                             <BarItem
-                                elem={elem}
-                                key={elem.id}
-                                uptadeFoodkList={props.uptadeFoodkList}
-                                bar={bar}
+                            elem={elem}
+                            key={elem.id}
+                            uptadeFoodkList={props.uptadeFoodkList}
+                            bar={bar}
+                            food={props.food}
+                            setFood={props.setFood}
+                            suma={props.suma} 
+                            setSuma={props.setSuma}
                             />
                         );
                     }

@@ -144,12 +144,18 @@
                     color: #688000;
                 }
             }
-            .header-info-right-number-input {
-                width: 30%;
-                height: 20px;
-                margin-right: 20px;
+            .header-info-right-number-inputs{
+                width: 70%;
+                margin: 0 auto;
                 text-align: center;
-                border-radius: 5px;
+
+                .header-info-right-number-inputs-input {
+                    width: 45%;
+                    height: 20px;
+                    margin-right: 10px;
+                    text-align: center;
+                    border-radius: 5px;
+                }
             }
             .header-info-right-number-btns{
                 width: 30%;
@@ -410,7 +416,7 @@
     .header {
         background-color: #9cc000;
         background-image: none;
-        height: 100px;
+        height: 110px;
         margin-bottom: 20px;
         padding: 20px 5px;
     }
@@ -634,21 +640,30 @@
         width: 32%;
         margin: 10px auto;
     }
+    .header .header-info-right .header-info-right-number .header-info-right-number-inputs .header-info-right-number-inputs-input{
+        width: 30%;
+    }
+    .header .header-info-right .header-info-right-number .header-info-right-number-inputs{
+        width: 100%;
+    }
 }
+
 @media screen and (max-width: 750px) {
     .header .header-info-right .header-info-right-number .header-info-right-number-input{
         margin-right: 10px;
     }
 }
+
 @media screen and (max-width: 500px) {
     .header{
         height: 460px;
     }
-    .header .header-info-right .header-info-right-number{
+    .header .header-info-right .header-info-right-number .header-info-right-number-inputs{
        display: grid;
        grid-template-columns: 1fr;
     }
-    .header .header-info-right .header-info-right-number .header-info-right-number-input{
+    .header .header-info-right .header-info-right-number .header-info-right-number-inputs 
+    .header-info-right-number-inputs-input {
         width: 250px;
         margin: 0 auto;
     }

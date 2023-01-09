@@ -12,6 +12,10 @@ const Salate = (props: {
         num: number;
         sum: number;
     }) => void;
+    food: any;
+    setFood: any;
+    suma: any; 
+    setSuma: any;
 }) => {
     const [salate, setSalate] = useState([]);
     const [urlSalate, setUrlSalate] = useState("http://localhost:3000/salate");
@@ -49,6 +53,10 @@ const Salate = (props: {
                                 key={elem.id}
                                 uptadeFoodkList={props.uptadeFoodkList}
                                 salate={salate}
+                                food={props.food}
+                                setFood={props.setFood}
+                                suma={props.suma} 
+                                setSuma={props.setSuma}
                             />
                         );
                     }

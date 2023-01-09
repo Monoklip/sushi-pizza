@@ -27,8 +27,12 @@ const SushiItem = (props: {
     setSuma: any;
 }) => {
     const { name, price, gramm, basket, image } = props.elem;
+    const { food, setFood } = props;
 
     const [sumaAllFoods, setSumaAllFoods] = useState(JSON.parse(localStorage.getItem("Suma") as string) || Number);
+
+    const [btnNone, setBtnNone] = useState(true);
+    const [btnYes, setBtnYes] = useState(false);
 
     const sushiBtn = () => {
         props.uptadeFoodkList({
@@ -40,13 +44,11 @@ const SushiItem = (props: {
             sum: price,
         });
 
-        props.setSuma(price + props.suma);
-        localStorage.setItem("Suma", JSON.stringify(props.suma + sumaAllFoods));
+        if(btnYes === false){
+            props.setSuma(price + props.suma);
+            localStorage.setItem("Suma", JSON.stringify(props.suma + sumaAllFoods));
+        }
     };
-    const { food, setFood } = props;
-
-    const [btnNone, setBtnNone] = useState(true);
-    const [btnYes, setBtnYes] = useState(false);
 
     const getFood = async () => {
         food.map((elem: { name: string }) => {
@@ -60,7 +62,7 @@ const SushiItem = (props: {
     useEffect(() => {
         getFood();
         localStorage.setItem("Suma", JSON.stringify(props.suma));
-    }, [props.sushi]);
+    },[props.sushi]);
 
     return (
         <div className="sushi-item">
@@ -80,20 +82,10 @@ const SushiItem = (props: {
                     {price} грн <span> / {gramm} гр</span>
                 </div>
                 {btnNone && (
-                    <button
-                        className="sushi-item-buy-btn-green"
-                        onClick={sushiBtn}
-                    >
-                        Замовити
-                    </button>
+                    <button className="sushi-item-buy-btn-green" onClick={sushiBtn}>Замовити</button>
                 )}
                 {btnYes && (
-                    <button
-                        className="sushi-item-buy-btn-orange"
-                        onClick={sushiBtn}
-                    >
-                        Заказ прийнято
-                    </button>
+                    <button className="sushi-item-buy-btn-orange" onClick={sushiBtn}>Заказ прийнято</button>
                 )}
             </div>
         </div>

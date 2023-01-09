@@ -12,6 +12,10 @@ const Pizza = (props: {
         num: number;
         sum: number;
     }) => void;
+    food: any;
+    setFood: any;
+    suma: any; 
+    setSuma: any;
 }) => {
     const [pizza, setPizza] = useState([]);
     const [urlPizza, setUrlPizza] = useState("http://localhost:3000/pizza");
@@ -45,10 +49,14 @@ const Pizza = (props: {
                     }) => {
                         return (
                             <PizzaItem
-                                elem={elem}
-                                key={elem.id}
-                                uptadeFoodkList={props.uptadeFoodkList}
-                                pizza={pizza}
+                            elem={elem}
+                            key={elem.id}
+                            uptadeFoodkList={props.uptadeFoodkList}
+                            pizza={pizza}
+                            food={props.food}
+                            setFood={props.setFood}
+                            suma={props.suma} 
+                            setSuma={props.setSuma}
                             />
                         );
                     }
