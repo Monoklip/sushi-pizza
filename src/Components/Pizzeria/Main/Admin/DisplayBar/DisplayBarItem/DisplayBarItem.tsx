@@ -1,7 +1,7 @@
 import { SetStateAction, useState } from 'react';
 import './display-bar-item.scss';
 
-const DisplayBarItem = (props: { elem: { name: string; price: number; gramm: number; basket: string; image: string; id: number; }; }) => {
+const DisplayBarItem = (props: { elem: { name: string; price: number; gramm: number; basket: string; image: string; id: number; }; getFood: any; }) => {
 
     const {
         name,
@@ -11,8 +11,9 @@ const DisplayBarItem = (props: { elem: { name: string; price: number; gramm: num
         image,
         id
     } = props.elem;
+    const { getFood } = props;
 
-    const [url, setUrl] = useState(`http://localhost:3000/bar/${id}`);
+    const [url, setUrl] = useState<string>(`http://localhost:3000/bar/${id}`);
 
     const [displayDelete, setDisplayDelete] = useState<boolean>(true);
     const [displayRename, serDisplayRenme] = useState<boolean>(false);
@@ -46,6 +47,8 @@ const DisplayBarItem = (props: { elem: { name: string; price: number; gramm: num
     const deleteBtn = async() => {
         const response = await fetch(url, {
             method: "DELETE"
+        }).finally(()=>{
+            getFood();
         });
     };    
 
@@ -67,7 +70,9 @@ const DisplayBarItem = (props: { elem: { name: string; price: number; gramm: num
             headers: {
                 "Content-Type": "application/json",
             },
-        });     
+        }).finally(()=>{
+            getFood();
+        });
 
         setDisplayDelete(true);
         serDisplayRenme(false);

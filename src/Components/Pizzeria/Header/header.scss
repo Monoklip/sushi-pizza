@@ -128,7 +128,7 @@
                 }
             }
             .header-info-right-number-singIn {
-                width: 100px;
+                width: 150px;
                 height: 30px;
                 margin-left: 20px;
                 border: 2px solid white;
@@ -301,6 +301,13 @@
     .header .header-logo {
         margin-left: 65px;
     }
+    .header
+        .header-info-right
+        .header-info-right-number
+        .header-info-right-number-phone
+        h1 {
+        font-size: 22px;
+    }
 }
 
 @media screen and (max-width: 1350px) {
@@ -318,13 +325,6 @@
 @media screen and (max-width: 1325px) {
     .header .header-info .header-info-internet .header-info-internet-time h4 {
         font-size: 14px;
-    }
-    .header
-        .header-info-right
-        .header-info-right-number
-        .header-info-right-number-phone
-        h1 {
-        font-size: 24px;
     }
 }
 
@@ -372,6 +372,13 @@
         width: 80%;
         height: 80%;
     }
+    .header
+        .header-info-right
+        .header-info-right-number
+        .header-info-right-number-phone
+        h1 {
+        font-size: 20px;
+    }
 }
 
 @media screen and (max-width: 1160px) {
@@ -416,7 +423,7 @@
     .header {
         background-color: #9cc000;
         background-image: none;
-        height: 110px;
+        height: 100px;
         margin-bottom: 20px;
         padding: 20px 5px;
     }
@@ -479,6 +486,9 @@
         .header-info-right-info-basket
         .header-info-right-info-basket-btn {
         font-size: 20px;
+    }
+    .header .header-info-right .header-info-right-number .header-info-right-number-singIn{
+        margin-left: -5px;
     }
 }
 
@@ -544,7 +554,7 @@
 @media screen and (max-width: 1000px) {
     .header {
         display: block;
-        height: 410px;
+        height: 375px;
     }
     .header .header-info .header-info-pages {
         flex-direction: column;
@@ -651,26 +661,5 @@
 @media screen and (max-width: 750px) {
     .header .header-info-right .header-info-right-number .header-info-right-number-input{
         margin-right: 10px;
-    }
-}
-
-@media screen and (max-width: 500px) {
-    .header{
-        height: 460px;
-    }
-    .header .header-info-right .header-info-right-number .header-info-right-number-inputs{
-       display: grid;
-       grid-template-columns: 1fr;
-    }
-    .header .header-info-right .header-info-right-number .header-info-right-number-inputs 
-    .header-info-right-number-inputs-input {
-        width: 250px;
-        margin: 0 auto;
-    }
-    .header .header-info-right .header-info-right-number .header-info-right-number-btns{
-        width: 150px;
-    }
-    .header .header-info-right .header-info-right-number .header-info-right-number-singIn{
-        margin: 0 auto;
     }
 }

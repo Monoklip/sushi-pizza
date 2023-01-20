@@ -28,7 +28,7 @@ const Pizza = (props: {
 
     useEffect(() => {
         pizzaBtn();
-    }, [pizza]);
+    }, []);
 
     return (
         <div className="pizza">
@@ -52,7 +52,6 @@ const Pizza = (props: {
                             elem={elem}
                             key={elem.id}
                             uptadeFoodkList={props.uptadeFoodkList}
-                            pizza={pizza}
                             food={props.food}
                             setFood={props.setFood}
                             suma={props.suma} 

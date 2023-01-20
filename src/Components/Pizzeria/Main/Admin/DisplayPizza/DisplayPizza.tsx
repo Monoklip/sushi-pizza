@@ -57,6 +57,8 @@ const DisplayPizza = () => {
             headers: {
                 "Content-Type": "application/json",
             },
+        }).finally(()=>{
+            getFood();
         });
 
         setName('');
@@ -79,7 +81,7 @@ const DisplayPizza = () => {
 
     useEffect(()=>{
         getFood();
-    },[data]);
+    },[]);
     
     return(
         <div className="display-pizza">
@@ -99,7 +101,7 @@ const DisplayPizza = () => {
             </div>
             <div className="display-pizza-delete">
             {data.map((elem: {name: string; price: number; gramm:number; basket: string; image: string; id: number;}) => {
-                    return <DisplayPizzaItem key={elem.id} elem={elem}/>
+                    return <DisplayPizzaItem key={elem.id} elem={elem} getFood={getFood}/>
                 })}
             </div>
         </div>

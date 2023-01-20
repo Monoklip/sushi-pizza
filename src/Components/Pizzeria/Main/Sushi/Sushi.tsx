@@ -20,15 +20,15 @@ const Sushi = (props: {
     const [sushi, setSushi] = useState([]);
     const [urlSushi, setUrlSushi] = useState("http://localhost:3000/sushi");
 
-    async function sushiBtn() {
+    const sushiBtn = async() => {
         const response = await fetch(urlSushi);
         const sushi = await response.json();
         setSushi(sushi);
-    }
+    };
 
     useEffect(() => {
         sushiBtn();
-    }, [sushi]);
+    }, []);
 
     return (
         <div className="sushi">
@@ -52,7 +52,6 @@ const Sushi = (props: {
                                 elem={elem}
                                 key={elem.id}
                                 uptadeFoodkList={props.uptadeFoodkList}
-                                sushi={sushi}
                                 food={props.food}
                                 setFood={props.setFood}
                                 suma={props.suma} 

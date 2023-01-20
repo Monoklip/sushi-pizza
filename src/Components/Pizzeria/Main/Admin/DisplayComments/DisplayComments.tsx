@@ -15,7 +15,7 @@ const DisplayComments = () => {
 
     useEffect(()=>{
         getComments();
-    },[data])
+    },[]);
 
     return(
         <div className="display-comments">

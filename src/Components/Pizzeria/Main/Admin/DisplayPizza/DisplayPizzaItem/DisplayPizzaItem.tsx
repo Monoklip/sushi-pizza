@@ -1,7 +1,7 @@
 import { SetStateAction, useState } from 'react';
 import './display-pizza-item.scss';
 
-const DisplayPizzaItem = (props: { elem: { name: string; price: number; gramm: number; basket: string; image: string; id: number; }; }) => {
+const DisplayPizzaItem = (props: { elem: { name: string; price: number; gramm: number; basket: string; image: string; id: number; }; getFood: any; }) => {
 
     const {
         name,
@@ -11,8 +11,11 @@ const DisplayPizzaItem = (props: { elem: { name: string; price: number; gramm: n
         image,
         id
     } = props.elem;
+    const {
+        getFood
+    } = props;
 
-    const [url, setUrl] = useState(`http://localhost:3000/pizza/${id}`);
+    const [url, setUrl] = useState<string>(`http://localhost:3000/pizza/${id}`);
 
     const [displayDelete, setDisplayDelete] = useState<boolean>(true);
     const [displayRename, serDisplayRenme] = useState<boolean>(false);
@@ -46,6 +49,8 @@ const DisplayPizzaItem = (props: { elem: { name: string; price: number; gramm: n
     const deleteBtn = async() => {
         const response = await fetch(url, {
             method: "DELETE"
+        }).finally(()=>{
+            getFood();
         });
     };    
 
@@ -67,7 +72,9 @@ const DisplayPizzaItem = (props: { elem: { name: string; price: number; gramm: n
             headers: {
                 "Content-Type": "application/json",
             },
-        });     
+        }).finally(()=>{
+            getFood();
+        });
 
         setDisplayDelete(true);
         serDisplayRenme(false);

@@ -1,12 +1,11 @@
-import { SetStateAction, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import ElementBuyForm from "./ElementBuyForm/ElementBuyForm";
 import ElementFromLocalStorage from "./ElementFromLocalStorage/ElementFromLocalStorage";
 import "./header.scss";
-import UserAccount from "./UserAccount/UserAccount";
 
-const Header = (props: { food: any; setFood: any; suma: any; setSuma: any; }) => {
-    const { setFood, food, suma, setSuma } = props;
+const Header = (props: { food: any; setFood: any; suma: any; setSuma: any; displayUser: boolean; }) => {
+    const { setFood, food, suma, setSuma, displayUser } = props;
 
     const [buyDisplay, setBuyDisplay] = useState<boolean>(false);
     const [buyDisplayNone, setBuyDisplayNone] = useState<boolean>(false);
@@ -24,26 +23,8 @@ const Header = (props: { food: any; setFood: any; suma: any; setSuma: any; }) =>
     const [colorStreet2, setColorStreet2] = useState<string>("white");
     const [colorStreet3, setColorStreet3] = useState<string>("white");
 
-    const [displayStreet, setDisplayStreet] = useState<boolean>(true);
-    const [displaySingIn, setDisplaySingIn] = useState<boolean>(false);
-    const [displaySingUp, setDisplaySingUp] = useState<boolean>(false);
-    const [displayUser, setDisplayUser] = useState<boolean>(false);
-
-    const [name, setName] = useState<string>('');
-    const [login, setLogin] = useState<string>('');
-    const [password, setPassword] = useState<string>('');
-    const [singInBorderError, setSingInBorderError] = useState<string>('black');
-    const [singUpBorderError, setSingUpBorderError] = useState<string>('black');
-
-    const [url, setUrl] = useState<string>("http://localhost:3000/accounts");
-    const [dataAcc, setDataAcc] = useState([]);
-
-    const [linkDisplayUser, setLinkDisplayUser] = useState<boolean>(true);
-    const [linkDisplayAdmin, setLinkDisplayAdmin] = useState<boolean>(false);
-
     useEffect(() => {
         setPosition(food.length);
-
         localStorage.setItem('Suma', JSON.stringify(suma));
 
         setSuma(JSON.parse(localStorage.getItem('Suma') as string) || Number);
@@ -121,117 +102,10 @@ const Header = (props: { food: any; setFood: any; suma: any; setSuma: any; }) =>
         setColorStreet3("black");
     };
 
-    const loginHandleChange = (event: { target: { value: SetStateAction<string>; }; }) => {
-        setLogin(event.target.value);
-    };
-
-    const passwordHandleChange = (event: { target: { value: SetStateAction<string>; }; }) => {
-        setPassword(event.target.value);
-    };
-
-    const nameHandleChange = (event: { target: { value: SetStateAction<string>; }; }) => {
-        setName(event.target.value);
-    };
-
-    const singInBtn = () => {
-        setDisplayStreet(false);
-        setDisplaySingIn(true);
-        setDisplaySingUp(false);
-        setDisplayUser(false);
-
-        setSingInBorderError('black');
-        setSingUpBorderError('black');
-    };
-
-    const singUpBtn = () => {
-        setDisplayStreet(false);
-        setDisplaySingIn(false);
-        setDisplaySingUp(true);
-        setDisplayUser(false);
-
-        setSingInBorderError('black');
-        setSingUpBorderError('black');
-    };
-
-    const registrAccount = async() => {
-        const response = await fetch(url);
-        const data = await response.json();
-        setDataAcc(data);
-
-        const filter = data.some((elem: { login: string; }) => elem.login === login);
-
-        if(filter === false && login !== 'admin' && login.trim() !== '' && password.trim() !== '' && name.trim() !== ''){
-            const response = await fetch(url, {
-                method: "POST",
-                body: JSON.stringify({
-                    login: login,
-                    password: password,
-                    name: name
-                }),
-                headers: {
-                    "Content-Type": "application/json",
-                }
-            });
-            alert('Аккаунт успішно зареєстровано');
-
-            setDisplayStreet(false);
-            setDisplaySingIn(true);
-            setDisplaySingUp(false);
-            setDisplayUser(false);
-        }
-        else{
-            // alert('Такий логін уже використовується');
-            setSingUpBorderError('red');
-        }
-    };
-
-    const singInAccount = async() => {
-        if(login !== '' && password !== ''){
-            const response = await fetch(url);
-            const datas = await response.json();
-            setDataAcc(datas);
-
-            datas.filter((elem: { login: string; password: string; name: string; }) => {
-                if(login === elem.login && password === elem.password){
-                    setDisplayStreet(false);
-                    setDisplaySingIn(false);
-                    setDisplaySingUp(false);
-                    setDisplayUser(true);
-                    setName(elem.name);
-                }
-                else{
-                    setSingInBorderError('red')
-                }
-            });
-        }
-        else{
-            alert('Заповніть всі поля');
-        }
-    };
-
-    const exitAccountBtn = () => {
-        setDisplayStreet(true);
-        setDisplaySingIn(false);
-        setDisplaySingUp(false);
-        setDisplayUser(false);
-        setLinkDisplayAdmin(false);
-        setLinkDisplayUser(true);
-
-        setSingInBorderError('black');
-        setSingUpBorderError('black');
-    };
-
-    const adminPanel = () => {
-        if(login === 'admin' && password === 'admin'){
-            setLinkDisplayUser(false);
-            setLinkDisplayAdmin(true);
-        }
-    };
-
     return (
         <div className="header">
             <div className="header-lviv">
-                <Link to={"/admin"}>
+                <Link to={"/account"}>
                     <img src="https://panda-pizza.com.ua/img/desk-logo.png" />
                 </Link>
             </div>
@@ -267,7 +141,6 @@ const Header = (props: { food: any; setFood: any; suma: any; setSuma: any; }) =>
                 </Link>
             </div>
             <div className="header-info-right">
-                {displayStreet && (
                     <div className="header-info-right-number">
                         <div className="header-info-right-number-street">
                             <span
@@ -294,98 +167,15 @@ const Header = (props: { food: any; setFood: any; suma: any; setSuma: any; }) =>
                         <div className="header-info-right-number-phone">
                             <h1>{phoneStreet}</h1>
                         </div>
+                        <Link to={'/account'}>
                         <button
                             className="header-info-right-number-singIn"
-                            onClick={singInBtn}
                         >
-                            Вхід
+                            Особистий кабінет
                         </button>
+                        </Link>
+                        
                     </div>
-                )}
-                {displaySingIn && (
-                    <div className="header-info-right-number">
-                        <div className="header-info-right-number-inputs">
-                            <input
-                                type="text"
-                                style={{borderColor: `${singInBorderError}`}}
-                                className="header-info-right-number-inputs-input"
-                                placeholder="Введіть логін"
-                                onChange={loginHandleChange}
-                                onKeyUp={adminPanel}
-                            />
-                            <input
-                                type="text"
-                                style={{borderColor: `${singInBorderError}`}}
-                                className="header-info-right-number-inputs-input"
-                                placeholder="Введіть пароль"
-                                onChange={passwordHandleChange}
-                                onKeyUp={adminPanel}
-                            />
-                        </div>
-                        <div className="header-info-right-number-btns">
-                            {linkDisplayUser &&
-                                <button className="header-info-right-number-btns-singIn" onClick={singInAccount}>
-                                Вхід
-                            </button>
-                            }
-                            {linkDisplayAdmin &&
-                                <Link to={'/admin'}>
-                                    <button className="header-info-right-number-btns-singIn" onClick={exitAccountBtn}>
-                                        Вхід
-                                    </button>
-                                </Link>
-                            }
-                            <button className="header-info-right-number-btns-singUp" onClick={singUpBtn}>
-                                Зареєструватися
-                            </button>
-                        </div>
-                    </div>
-                )}
-                {displaySingUp &&
-                    <div className="header-info-right-number">
-                        <div className="header-info-right-number-inputs">
-                            <input
-                                type="text"
-                                style={{borderColor: `${singUpBorderError}`}}
-                                className="header-info-right-number-inputs-input"
-                                placeholder="Придумайте логін"
-                                onChange={loginHandleChange}
-                            />
-                            <input
-                                type="text"
-                                style={{borderColor: `${singUpBorderError}`}}
-                                className="header-info-right-number-inputs-input"
-                                placeholder="Придумайте пароль"
-                                onChange={passwordHandleChange}
-                            />
-                            <input 
-                                type="text"
-                                style={{borderColor: `${singUpBorderError}`}}
-                                className="header-info-right-number-inputs-input" 
-                                placeholder="Вкажіть імя"
-                                onChange={nameHandleChange}
-                            />
-                        </div>
-                        <div className="header-info-right-number-btns">
-                            <button className="header-info-right-number-btns-singIn" onClick={registrAccount}>
-                                Зареєструватися
-                            </button>
-                            <button className="header-info-right-number-btns-singUp" onClick={singInBtn}>
-                                Вхід
-                            </button>
-                        </div>
-                    </div>
-                }
-                {displayUser &&
-                    <div className="header-info-right-number">
-                        <UserAccount dataAcc={{
-                            login: login,
-                            password: password,
-                            name: name
-                        }}/>
-                        <button className="header-info-right-number-btnExit" onClick={exitAccountBtn}>Вихід</button>
-                    </div>
-                }
                 <div className="header-info-right-info">
                     <div className="header-info-right-info-vacancy">
                         <Link to={"/feedback"}>ВІДГУКИ</Link>
@@ -442,6 +232,7 @@ const Header = (props: { food: any; setFood: any; suma: any; setSuma: any; }) =>
                                         <button
                                             className="header-info-right-info-basket-buy-btn"
                                             onClick={btnBuyNone}
+                                             data-dismiss="modal"
                                         >
                                             Дозамовити страви
                                         </button>

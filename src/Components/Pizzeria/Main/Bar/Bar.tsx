@@ -28,7 +28,7 @@ const Bar = (props: {
 
     useEffect(() => {
         barBtn();
-    }, [bar]);
+    }, []);
 
     return (
         <div className="bar">
@@ -52,7 +52,6 @@ const Bar = (props: {
                             elem={elem}
                             key={elem.id}
                             uptadeFoodkList={props.uptadeFoodkList}
-                            bar={bar}
                             food={props.food}
                             setFood={props.setFood}
                             suma={props.suma} 

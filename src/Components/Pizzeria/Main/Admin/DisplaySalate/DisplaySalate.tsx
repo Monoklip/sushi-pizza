@@ -5,7 +5,7 @@ import DisplaySalateItem from './DisplaySalateItem/DisplaySalateItem';
 const DisplaySalate = () => {
 
     const [url, setUrl] = useState<string>('http://localhost:3000/salate');
-    const [data, setData] = useState([]);
+    const [data, setData] = useState<any>([]);
 
     const [name, setName] = useState<string>('');
     const [price, setPrice] = useState<number>(0);
@@ -57,6 +57,8 @@ const DisplaySalate = () => {
             headers: {
                 "Content-Type": "application/json",
             },
+        }).finally(()=>{
+            getFood();
         });
 
         setName('');
@@ -71,7 +73,7 @@ const DisplaySalate = () => {
         setImageValue('');
     };
 
-    async function getFood() {
+    const getFood = async() => {
         const response = await fetch(url);
         const data = await response.json();
         setData(data);
@@ -79,7 +81,7 @@ const DisplaySalate = () => {
 
     useEffect(()=>{
         getFood();
-    },[data]);
+    },[]);
     
     return(
         <div className="display-salate">
@@ -99,7 +101,7 @@ const DisplaySalate = () => {
             </div>
             <div className="display-salate-delete">
             {data.map((elem: {name: string; price: number; gramm:number; basket: string; image: string; id: number;}) => {
-                    return <DisplaySalateItem key={elem.id} elem={elem}/>
+                    return <DisplaySalateItem key={elem.id} elem={elem} getFood={getFood}/>
                 })}
             </div>
         </div>

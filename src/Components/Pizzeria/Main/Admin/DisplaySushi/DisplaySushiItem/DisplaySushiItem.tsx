@@ -1,7 +1,7 @@
 import { SetStateAction, useState } from 'react';
 import './display-sushi-item.scss';
 
-const DisplaySushiItem = (props: { elem: { name: string; price: number; gramm: number; basket: string; image: string; id: number; }; }) => {
+const DisplaySushiItem = (props: { elem: { name: string; price: number; gramm: number; basket: string; image: string; id: number; }; getFood: any; }) => {
 
     const {
         name,
@@ -11,6 +11,10 @@ const DisplaySushiItem = (props: { elem: { name: string; price: number; gramm: n
         image,
         id
     } = props.elem;
+
+    const {
+        getFood
+    } = props;
 
     const [url, setUrl] = useState(`http://localhost:3000/sushi/${id}`);
 
@@ -46,6 +50,8 @@ const DisplaySushiItem = (props: { elem: { name: string; price: number; gramm: n
     const deleteBtn = async() => {
         const response = await fetch(url, {
             method: "DELETE"
+        }).finally(()=>{
+            getFood();
         });
     };    
 
@@ -67,7 +73,9 @@ const DisplaySushiItem = (props: { elem: { name: string; price: number; gramm: n
             headers: {
                 "Content-Type": "application/json",
             },
-        });     
+        }).finally(()=>{
+            getFood();
+        });
 
         setDisplayDelete(true);
         serDisplayRenme(false);

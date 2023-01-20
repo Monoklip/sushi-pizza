@@ -20,7 +20,6 @@ const PizzaItem = (props: {
         sum: number;
     }) => void;
 
-    pizza: any;
     food: any;
     setFood: any;
     suma: any;
@@ -28,8 +27,12 @@ const PizzaItem = (props: {
 }) => {
 
     const { name, price, gramm, basket, image } = props.elem;
+    const { food, setFood } = props;
 
     const [sumaAllFoods, setSumaAllFoods] = useState(JSON.parse(localStorage.getItem("Suma") as string) || Number);
+
+    const [btnNone, setBtnNone] = useState(true);
+    const [btnYes, setBtnYes] = useState(false);
 
     const pizzaBtn = () => {
         props.uptadeFoodkList({
@@ -46,11 +49,7 @@ const PizzaItem = (props: {
             localStorage.setItem("Suma", JSON.stringify(props.suma + sumaAllFoods));
         }
     };
-    const { food, setFood } = props;
-
-    const [btnNone, setBtnNone] = useState(true);
-    const [btnYes, setBtnYes] = useState(false);
-
+    
     const getFood = async () => {
         food.map((elem: { name: string }) => {
             if (elem.name === name) {
@@ -63,7 +62,7 @@ const PizzaItem = (props: {
     useEffect(() => {
         getFood();
         localStorage.setItem("Suma", JSON.stringify(props.suma));
-    }, [props.pizza]);
+    }, [food]);
 
     return (
         <div className='pizza-item'>

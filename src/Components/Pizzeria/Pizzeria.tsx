@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import Footer from "./Footer/Footer";
 import Header from "./Header/Header";
 import Main from "./Main/Main";
@@ -10,6 +10,9 @@ const Pizzeria = () => {
 
     const sumaFromLocalStorage = JSON.parse(localStorage.getItem("Suma") as string) || Number;
     const [suma, setSuma] = useState<number>(sumaFromLocalStorage);
+
+    const [displayUser, setDisplayUser] = useState<boolean>(false);
+
 
     const uptadeFoodkList = (newList: any) => {
         const audit = (elem: { name: string }) => elem.name === newList.name;
@@ -24,13 +27,14 @@ const Pizzeria = () => {
 
     return (
         <div className="pizzeria">
-            <Header food={food} setFood={setFood} suma={suma} setSuma={setSuma}/>
+            <Header food={food} setFood={setFood} suma={suma} setSuma={setSuma} displayUser={displayUser}/>
             <Main
                 uptadeFoodkList={uptadeFoodkList}
                 food={food}
                 setFood={setFood}
                 suma={suma} 
                 setSuma={setSuma}
+                setDisplayUser={setDisplayUser}
             />
             <Footer />
         </div>

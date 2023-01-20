@@ -4,8 +4,8 @@ import DisplaySushiItem from './DisplaySushiItem/DisplaySushiItem';
 
 const DisplaySushi = () => {
 
-    const [url, setUrl] = useState('http://localhost:3000/sushi');
-    const [data, setData] = useState([]);
+    const [url, setUrl] = useState<string>('http://localhost:3000/sushi');
+    const [data, setData] = useState<any>([]);
 
     const [name, setName] = useState<string>('');
     const [price, setPrice] = useState<number>(0);
@@ -45,7 +45,7 @@ const DisplaySushi = () => {
     };
 
     const createBtn = async() => {
-        const response = await fetch(url, {
+        await fetch(url, {
             method: "POST",
             body: JSON.stringify({
                 name: name,
@@ -57,8 +57,10 @@ const DisplaySushi = () => {
             headers: {
                 "Content-Type": "application/json",
             },
+        }).finally(()=>{
+            getFood();
         });
-
+        
         setName('');
         setNameValue('');
         setPrice('' as unknown as number);
@@ -79,7 +81,7 @@ const DisplaySushi = () => {
 
     useEffect(()=>{
         getFood();
-    },[data]);
+    },[]);
     
     return(
         <div className="display-sushi">
@@ -99,7 +101,7 @@ const DisplaySushi = () => {
             </div>
             <div className="display-sushi-delete">
                 {data.map((elem: {name: string; price: number; gramm:number; basket: string; image: string; id: number;}) => {
-                    return <DisplaySushiItem key={elem.id} elem={elem}/>
+                    return <DisplaySushiItem key={elem.id} elem={elem} getFood={getFood}/>
                 })}
             </div>
         </div>

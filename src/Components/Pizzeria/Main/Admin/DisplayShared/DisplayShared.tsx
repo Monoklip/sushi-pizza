@@ -40,6 +40,8 @@ const DisplayShared = () => {
             headers: {
                 "Content-Type": "application/json",
             },
+        }).finally(()=>{
+            getShared();
         });
 
         setName("");
@@ -58,7 +60,7 @@ const DisplayShared = () => {
 
     useEffect(() => {
         getShared();
-    }, [data]);
+    }, []);
 
     return (
         <div className="display-shared">
@@ -91,7 +93,7 @@ const DisplayShared = () => {
                         image: string;
                         id: number;
                     }) => {
-                        return <DisplaySharedItem key={elem.id} elem={elem} />;
+                        return <DisplaySharedItem key={elem.id} elem={elem} getShared={getShared}/>;
                     }
                 )}
             </div>

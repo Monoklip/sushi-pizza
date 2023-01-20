@@ -1,7 +1,7 @@
 import { SetStateAction, useState } from 'react';
 import './display-shared-item.scss';
 
-const DisplaySharedItem = (props: { elem: { name: string; info: string; image: string; id: number; }; }) => {
+const DisplaySharedItem = (props: { elem: { name: string; info: string; image: string; id: number; }; getShared: any; }) => {
 
     const {
         name,
@@ -9,6 +9,10 @@ const DisplaySharedItem = (props: { elem: { name: string; info: string; image: s
         image,
         id
     } = props.elem;
+
+    const {
+        getShared
+    } = props;
 
     const [url, setUrl] = useState(`http://localhost:3000/shared/${id}`);
 
@@ -34,6 +38,8 @@ const DisplaySharedItem = (props: { elem: { name: string; info: string; image: s
     const deleteBtn = async() => {
         const response = await fetch(url, {
             method: "DELETE"
+        }).finally(()=>{
+            getShared();
         });
     };
 
@@ -53,7 +59,9 @@ const DisplaySharedItem = (props: { elem: { name: string; info: string; image: s
             headers: {
                 "Content-Type": "application/json",
             },
-        });     
+        }).finally(()=>{
+            getShared();
+        });
 
         setDisplayDelete(true);
         serDisplayRenme(false);

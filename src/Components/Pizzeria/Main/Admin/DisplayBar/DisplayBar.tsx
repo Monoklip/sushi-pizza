@@ -5,7 +5,7 @@ import DisplayBarItem from './DisplayBarItem/DisplayBarItem';
 const DisplayBar = () => {
 
     const [url, setUrl] = useState<string>('http://localhost:3000/bar');
-    const [data, setData] = useState([]);
+    const [data, setData] = useState<any>([]);
 
     const [name, setName] = useState<string>('');
     const [price, setPrice] = useState<number>(0);
@@ -57,6 +57,8 @@ const DisplayBar = () => {
             headers: {
                 "Content-Type": "application/json",
             },
+        }).finally(()=>{
+            getFood();
         });
 
         setName('');
@@ -71,7 +73,7 @@ const DisplayBar = () => {
         setImageValue('');
     };
 
-    async function getFood() {
+    const getFood = async() => {
         const response = await fetch(url);
         const data = await response.json();
         setData(data);
@@ -79,7 +81,7 @@ const DisplayBar = () => {
 
     useEffect(()=>{
         getFood();
-    },[data]);
+    },[]);
     
     return(
         <div className="display-bar">
@@ -99,7 +101,7 @@ const DisplayBar = () => {
             </div>
             <div className="display-bar-delete">
             {data.map((elem: {name: string; price: number; gramm:number; basket: string; image: string; id: number;}) => {
-                    return <DisplayBarItem key={elem.id} elem={elem}/>
+                    return <DisplayBarItem key={elem.id} elem={elem} getFood={getFood}/>
                 })}
             </div>
         </div>

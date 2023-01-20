@@ -20,17 +20,17 @@ const SushiItem = (props: {
         sum: number;
     }) => void;
 
-    sushi: any;
     food: any;
     setFood: any;
     suma: any;
     setSuma: any;
 }) => {
+
     const { name, price, gramm, basket, image } = props.elem;
     const { food, setFood } = props;
 
     const [sumaAllFoods, setSumaAllFoods] = useState(JSON.parse(localStorage.getItem("Suma") as string) || Number);
-
+    
     const [btnNone, setBtnNone] = useState(true);
     const [btnYes, setBtnYes] = useState(false);
 
@@ -62,10 +62,10 @@ const SushiItem = (props: {
     useEffect(() => {
         getFood();
         localStorage.setItem("Suma", JSON.stringify(props.suma));
-    },[props.sushi]);
-
+    }, [food]);
+       
     return (
-        <div className="sushi-item">
+        <div className='sushi-item'>
             <Link to={`./${name}`}>
                 <div className="sushi-item-info">
                     <div className="sushi-item-info-image">
@@ -78,18 +78,16 @@ const SushiItem = (props: {
                 </div>
             </Link>
             <div className="sushi-item-buy">
-                <div className="sushi-item-buy-price">
-                    {price} грн <span> / {gramm} гр</span>
-                </div>
-                {btnNone && (
+                <div className="sushi-item-buy-price">{price} грн <span> / {gramm} гр</span></div>
+                {btnNone &&
                     <button className="sushi-item-buy-btn-green" onClick={sushiBtn}>Замовити</button>
-                )}
-                {btnYes && (
+                }
+                {btnYes &&
                     <button className="sushi-item-buy-btn-orange" onClick={sushiBtn}>Заказ прийнято</button>
-                )}
+                }
             </div>
         </div>
-    );
+    )
 };
 
 export default SushiItem;

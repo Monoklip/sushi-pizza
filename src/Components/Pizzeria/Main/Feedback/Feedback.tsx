@@ -1,10 +1,5 @@
 import { SetStateAction, useEffect, useState } from "react";
-import {
-    validName,
-    validNumber,
-    validPhone,
-    validMessage,
-} from "../../../Regexp/Regexp";
+import { validName, validNumber, validPhone, validMessage } from "../../../Regexp/Regexp";
 import "./feedback.scss";
 import FeedbackItem from "./FeedbackItem/FeedbackItem";
 
@@ -95,7 +90,7 @@ const Feedback = () => {
         feedbackBadCheck();
         setNumPositiv(dataGoodCheck.length);
         setNumNegativ(dataBadCheck.length);
-    }, [reviews]);
+    }, []);
 
     const checkReviews = () => {
         if (goodCheck === true) {
@@ -125,7 +120,13 @@ const Feedback = () => {
                 }),
                 headers: {
                     "Content-Type": "application/json",
-                },
+                }
+            }).finally(()=>{
+                feedbackBtn();
+                feedbackGoodCheck();
+                feedbackBadCheck();
+                setNumPositiv(dataGoodCheck.length);
+                setNumNegativ(dataBadCheck.length);
             });
 
             setNameUserValue("");
@@ -227,11 +228,11 @@ const Feedback = () => {
                 <div className="feedback-numbers-interest">
                     <p>
                         ЗАДОВОЛЕНІ КЛІЄНТИ{" "}
-                        <span style={{ color: "green" }}>{numPositiv}</span>
+                        <span style={{ color: "green" }}>{dataGoodCheck.length}</span>
                     </p>
                     <p>
                         Є НАД ЧИМ ПОПРАЦЮВАТИ{" "}
-                        <span style={{ color: "red" }}>{numNegativ}</span>
+                        <span style={{ color: "red" }}>{dataBadCheck.length}</span>
                     </p>
                 </div>
             </div>

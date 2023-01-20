@@ -20,7 +20,6 @@ const SalateItem = (props: {
         sum: number;
     }) => void;
 
-    salate: any;
     food: any;
     setFood: any;
     suma: any;
@@ -62,7 +61,7 @@ const SalateItem = (props: {
     useEffect(() => {
         getFood();
         localStorage.setItem("Suma", JSON.stringify(props.suma));
-    }, [props.salate]);
+    }, [food]);
 
     return(
         <div className='salate-item'>

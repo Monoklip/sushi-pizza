@@ -33,6 +33,7 @@ const Main = (props: {
     setFood: any;
     suma: any;
     setSuma: any;
+    setDisplayUser: any;
 }) => {
     const [sushiUrl, setSushiUrl] = useState<string>("http://localhost:3000/sushi");
     const [sushiData, setSushiData] = useState([]);
@@ -45,7 +46,7 @@ const Main = (props: {
 
     useEffect(() => {
         getSushi();
-    }, [sushiData]);
+    }, []);
 
     const [pizzaUrl, setPizzaUrl] = useState<string>("http://localhost:3000/pizza");
     const [pizzaData, setPizzaData] = useState([]);
@@ -58,7 +59,7 @@ const Main = (props: {
 
     useEffect(() => {
         getPizza();
-    }, [pizzaData]);
+    }, []);
 
     const [salateUrl, setSalateUrl] = useState<string>("http://localhost:3000/salate");
     const [salateData, setSalateData] = useState([]);
@@ -71,7 +72,7 @@ const Main = (props: {
 
     useEffect(() => {
         getSalate();
-    }, [salateData]);
+    }, []);
 
     const [barUrl, setBarUrl] = useState<string>("http://localhost:3000/bar");
     const [barData, setBarData] = useState([]);
@@ -84,7 +85,7 @@ const Main = (props: {
 
     useEffect(() => {
         getBar();
-    }, [barData]);
+    }, []);
 
     return (
         <Routes>
@@ -139,7 +140,7 @@ const Main = (props: {
             <Route path="/about" element={<About />}></Route>
             <Route path="/feedback" element={<Feedback />}></Route>
             <Route path="/vacancies" element={<Vacancies />}></Route>
-            <Route path="/admin" element={<Admin />}></Route>
+            <Route path="/account" element={<Admin setDisplayUser={props.setDisplayUser}/>}></Route>
             <Route path="/delivery"></Route>
             <Route path="/contacts"></Route>
             <Route path="*" element={<NotPageFound />}></Route>
