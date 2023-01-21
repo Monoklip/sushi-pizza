@@ -1,26 +1,31 @@
 import { SetStateAction, useEffect, useState } from "react";
-import { validName, validNumber, validPhone, validMessage } from "../../../Regexp/Regexp";
+import { validFeedbackName, validFeedbackNumber, validFeedbackPhone, validFeedbackMessage } from "../../../Regexp/Regexp";
 import "./feedback.scss";
 import FeedbackItem from "./FeedbackItem/FeedbackItem";
 
 const Feedback = () => {
     const [urlReviews, setUrlReviews] = useState<string>("http://localhost:3000/reviews");
-    const [reviews, setReviews] = useState([]);
+    const [reviews, setReviews] = useState<any>([]);
 
     const [urlGoodCheck, setUrlGoodCheck] = useState<string>("http://localhost:3000/good-check");
-    const [dataGoodCheck, setDataGoodCheck] = useState([]);
+    const [dataGoodCheck, setDataGoodCheck] = useState<any>([]);
 
     const [urlBadCheck, setUrlBadCheck] = useState<string>("http://localhost:3000/bad-check");
-    const [dataBadCheck, setDataBadCheck] = useState([]);
+    const [dataBadCheck, setDataBadCheck] = useState<any>([]);
 
     const [numberFeedback, setNumberFeedback] = useState<number>(0);
-    const [numPositiv, setNumPositiv] = useState<number>(0);
-    const [numNegativ, setNumNegativ] = useState<number>(0);
 
     const [nameUser, setNameUser] = useState<string>("");
     const [numberUser, setNumberUser] = useState<string>("");
     const [phoneUser, setPhoneUser] = useState<string>("");
     const [messageUser, setMessageUser] = useState<string>("");
+    const [dateUser, setDateUser] = useState<string>(
+        new Date().getHours() + ':' +
+        new Date().getMinutes() + '  ' +
+        new Date().getDate() + '-' +
+        new Date().getMonth() + 1 + '-' +
+        new Date().getFullYear()
+    );
 
     const [nameUserValue, setNameUserValue] = useState<string>("");
     const [numberUserValue, setNumberUserValue] = useState<string>("");
@@ -35,6 +40,11 @@ const Feedback = () => {
     const [validBorderPhone, setValidBorderPhone] = useState<string>("black");
     const [validBorderMessage, setValidBorderMessage] = useState<string>("black");
 
+    const [validTextErrorName, setValidTextErrorName] = useState<string>("");
+    const [validTextErrorNumber, setValidTextErrorNumber] = useState<string>("");
+    const [validTextErrorPhone, setValidTextErrorPhone] = useState<string>("");
+    const [validTextErrorMessage, setValidTextErrorMessage] = useState<string>("");
+
     const goodCheckHandleCheck = () => {
         setGoodCheck(!goodCheck);
         setBadCheck(false);
@@ -45,22 +55,22 @@ const Feedback = () => {
         setGoodCheck(false);
     };
 
-    const nameUserHandleChange = (event: {target: { value: SetStateAction<string> };}) => {
+    const nameUserHandleChange = (event: { target: { value: SetStateAction<string> }; }) => {
         setNameUser(event.target.value);
         setNameUserValue(event.target.value);
     };
 
-    const numberUserHandleChange = (event: {target: { value: SetStateAction<string> };}) => {
+    const numberUserHandleChange = (event: { target: { value: SetStateAction<string> }; }) => {
         setNumberUser(event.target.value);
         setNumberUserValue(event.target.value);
     };
 
-    const phoneUserHandleChange = (event: {target: { value: SetStateAction<string> };}) => {
+    const phoneUserHandleChange = (event: { target: { value: SetStateAction<string> }; }) => {
         setPhoneUser(event.target.value);
         setPhoneUserValue(event.target.value);
     };
 
-    const messageUserHandleChange = (event: {target: { value: SetStateAction<string> };}) => {
+    const messageUserHandleChange = (event: { target: { value: SetStateAction<string> }; }) => {
         setMessageUser(event.target.value);
         setMessageUserValue(event.target.value);
     };
@@ -88,8 +98,8 @@ const Feedback = () => {
         feedbackBtn();
         feedbackGoodCheck();
         feedbackBadCheck();
-        setNumPositiv(dataGoodCheck.length);
-        setNumNegativ(dataBadCheck.length);
+
+        // setReviews(reviews.sort((next: { id: number; }, prev: { id: number; }) => prev.id - next.id));
     }, []);
 
     const checkReviews = () => {
@@ -104,10 +114,10 @@ const Feedback = () => {
 
     const createBtn = async () => {
         if (
-            validName.test(nameUser) &&
-            validNumber.test(numberUser) &&
-            validPhone.test(phoneUser) &&
-            validMessage.test(messageUser)
+            validFeedbackName.test(nameUser) &&
+            validFeedbackNumber.test(numberUser) &&
+            validFeedbackPhone.test(phoneUser) &&
+            validFeedbackMessage.test(messageUser)
         ) {
             const response = await fetch(urlReviews, {
                 method: "POST",
@@ -117,16 +127,15 @@ const Feedback = () => {
                     number: numberUser,
                     text: messageUser,
                     check: checkReviews(),
+                    date: dateUser
                 }),
                 headers: {
                     "Content-Type": "application/json",
                 }
-            }).finally(()=>{
+            }).finally(() => {
                 feedbackBtn();
                 feedbackGoodCheck();
                 feedbackBadCheck();
-                setNumPositiv(dataGoodCheck.length);
-                setNumNegativ(dataBadCheck.length);
             });
 
             setNameUserValue("");
@@ -167,48 +176,88 @@ const Feedback = () => {
             setValidBorderName("black");
             setValidBorderNumber("black");
             setValidBorderPhone("black");
-        } else {
-            alert("Невірно заповнені поля");
+        }
+        else {
+            if (nameUser === '') {
+                setValidTextErrorName('Заповніть це поле');
+                setValidBorderName('red');
+            }
+            if (!validFeedbackNumber.test(numberUser)) {
+                setValidTextErrorNumber('Заповніть це поле');
+                setValidBorderNumber('red');
+            }
+            else {
+                setValidTextErrorNumber('');
+                setValidBorderNumber('green');
+            }
+            if (!validFeedbackPhone.test(phoneUser)) {
+                setValidTextErrorPhone('Заповніть це поле');
+                setValidBorderPhone('red');
+            }
+            else {
+                setValidTextErrorPhone('');
+                setValidBorderPhone('green');
+            }
+            if (!validFeedbackMessage.test(messageUser)) {
+                setValidTextErrorMessage('Заповніть це поле');
+                setValidBorderMessage('red');
+            }
+            else {
+                setValidTextErrorMessage('');
+                setValidBorderMessage('green');
+            }
         }
     };
 
     const validBtnName = () => {
-        if (validName.test(nameUser)) {
+        if (validFeedbackName.test(nameUser)) {
             setValidBorderName("green");
+            setValidTextErrorName('');
         } else if (nameUser === "") {
             setValidBorderName("black");
+            setValidTextErrorName('Заповніть це поля');
         } else {
             setValidBorderName("red");
+            setValidTextErrorName('Неправильно заповненне поле');
         }
     };
 
     const validBtnNumber = () => {
-        if (validNumber.test(numberUser)) {
+        if (validFeedbackNumber.test(numberUser)) {
             setValidBorderNumber("green");
+            setValidTextErrorNumber('');
         } else if (numberUser === "") {
             setValidBorderNumber("black");
+            setValidTextErrorNumber('Заповніть це поля');
         } else {
             setValidBorderNumber("red");
+            setValidTextErrorNumber('Неправильно заповненне поле');
         }
     };
 
     const validBtnPhone = () => {
-        if (validPhone.test(phoneUser)) {
+        if (validFeedbackPhone.test(phoneUser)) {
             setValidBorderPhone("green");
+            setValidTextErrorPhone('');
         } else if (phoneUser === "") {
             setValidBorderPhone("black");
+            setValidTextErrorPhone('Заповніть це поля');
         } else {
             setValidBorderPhone("red");
+            setValidTextErrorPhone('Неправильно заповненне поле');
         }
     };
 
     const validBtnMessage = () => {
-        if (validMessage.test(messageUser)) {
+        if (validFeedbackMessage.test(messageUser)) {
             setValidBorderMessage("green");
+            setValidTextErrorMessage('');
         } else if (messageUser === "") {
             setValidBorderMessage("black");
+            setValidTextErrorMessage('Заповніть це поля');
         } else {
             setValidBorderMessage("red");
+            setValidTextErrorMessage('Неправильно заповненне поле');
         }
     };
 
@@ -256,6 +305,7 @@ const Feedback = () => {
                             onKeyUp={validBtnMessage}
                             value={messageUserValue}
                         ></textarea>
+                        <div className="feedback-reviews-write-data-textError">{validTextErrorMessage}</div>
                     </div>
                     <div className="feedback-reviews-write-data">
                         <input
@@ -266,6 +316,7 @@ const Feedback = () => {
                             onKeyUp={validBtnNumber}
                             value={numberUserValue}
                         />
+                        <div className="feedback-reviews-write-data-textError">{validTextErrorNumber}</div>
                         <input
                             type="text"
                             style={{ borderColor: `${validBorderName}` }}
@@ -274,6 +325,7 @@ const Feedback = () => {
                             onKeyUp={validBtnName}
                             value={nameUserValue}
                         />
+                        <div className="feedback-reviews-write-data-textError">{validTextErrorName}</div>
                         <input
                             type="text"
                             style={{ borderColor: `${validBorderPhone}` }}
@@ -282,6 +334,7 @@ const Feedback = () => {
                             onKeyUp={validBtnPhone}
                             value={phoneUserValue}
                         />
+                        <div className="feedback-reviews-write-data-textError">{validTextErrorPhone}</div>
                         <div className="feedback-reviews-write-data-checkbox">
                             <input
                                 type="checkbox"
@@ -303,19 +356,18 @@ const Feedback = () => {
                 </div>
             </div>
             <div className="feedback-comments">
-                {reviews.map(
+                {reviews.sort((next: { id: number; }, prev: { id: number; }) => prev.id - next.id).map(
                     (elem: {
                         name: string;
                         text: string;
                         check: string;
                         id: number;
+                        date: string
                     }) => {
                         return (
                             <FeedbackItem
                                 elem={elem}
                                 key={elem.id}
-                                numPositiv={numPositiv}
-                                setNumPositiv={setNumPositiv}
                             />
                         );
                     }

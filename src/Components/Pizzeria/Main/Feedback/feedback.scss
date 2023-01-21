@@ -69,6 +69,10 @@
                         outline: none;
                     }
                 }
+                .feedback-reviews-write-data-textError{
+                    height: 25px;
+                    color: red;
+                }
             }
             .feedback-reviews-write-data {
                 width: 35%;
@@ -76,7 +80,6 @@
                 input {
                     width: 80%;
                     height: 25px;
-                    margin-bottom: 15px;
                     padding: 0 10px;
                     box-sizing: border-box;
                     font-size: 16px;
@@ -87,6 +90,10 @@
                         outline: none;
                         border: 2px solid black;
                     }
+                }
+                .feedback-reviews-write-data-textError{
+                    height: 25px;
+                    color: red;
                 }
                 .feedback-reviews-write-data-checkbox {
                     width: 100%;

@@ -18,7 +18,13 @@
         width: 90%;
 
         .feedbackItem-user-name{
+            display: flex;
+            justify-content: space-between;
             height: 50%;
+            
+            h4{
+                color: grey;
+            }
         }
         .feedbackItem-user-comment{
             height: 50%;

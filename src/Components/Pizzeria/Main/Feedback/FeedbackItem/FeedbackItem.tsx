@@ -1,7 +1,6 @@
-import { useState } from 'react';
 import './feedbackItem.scss';
 
-const FeedbackItem = (props: { elem: { check: string; name: string; text: string; }; setNumPositiv: (arg0: any) => void; numPositiv: number; }) => {
+const FeedbackItem = (props: { elem: { check: string; name: string; text: string; date: string }; }) => {
 
     return(
         <div className='feedbackItem'>
@@ -13,6 +12,7 @@ const FeedbackItem = (props: { elem: { check: string; name: string; text: string
                     <div className="feedbackItem-user">
                         <div className="feedbackItem-user-name" style={{fontWeight: 'bold', color: `green`}}>
                             <h3>{props.elem.name}</h3>
+                            <h4>{props.elem.date}</h4>
                         </div>
                         <div className="feedbackItem-user-comment">
                             <p>{props.elem.text}</p>
@@ -28,6 +28,7 @@ const FeedbackItem = (props: { elem: { check: string; name: string; text: string
                     <div className="feedbackItem-user">
                         <div className="feedbackItem-user-name" style={{fontWeight: 'bold', color: `red`}}>
                             <h3>{props.elem.name}</h3>
+                            <h4>{props.elem.date}</h4>
                         </div>
                         <div className="feedbackItem-user-comment">
                             <p>{props.elem.text}</p>
@@ -41,8 +42,9 @@ const FeedbackItem = (props: { elem: { check: string; name: string; text: string
                         <img src="https://panda-sushi.com.ua/uploads/pages/reviews/1537447494pandas_02.gif" alt="" />
                     </div>
                     <div className="feedbackItem-user">
-                        <div className="feedbackItem-user-name" style={{fontWeight: 'bold', color: `blue`}}>
+                        <div className="feedbackItem-user-name" style={{fontWeight: 'bold', color: `rgb(60, 118, 243)`}}>
                             <h3>{props.elem.name}</h3>
+                            <h4>{props.elem.date}</h4>
                         </div>
                         <div className="feedbackItem-user-comment">
                             <p>{props.elem.text}</p>

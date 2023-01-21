@@ -159,7 +159,7 @@ const Admin = (props: { setDisplayUser: any; }) => {
 
                 localStorage.setItem('User', JSON.stringify({login: 'admin', password: 'admin'}));
             }
-            else if(login === '' && password === ''){
+            else if(login === '' || password === ''){
                 setErrorText('Заповніть всі поля');
             }
             else {
@@ -173,13 +173,9 @@ const Admin = (props: { setDisplayUser: any; }) => {
         const data = await response.json();
         setDataAcc(data);
 
-        setLoginBorder('green');
-        setPasswordBorder('green');
-        setNameBorder('green');
-
         const filter = data.some((elem: { login: string; }) => elem.login === login);
 
-        if(filter === false && login !== 'admin' && login.trim() !== '' && password.trim() !== '' && name.trim() !== ''){
+        if(filter === false && login !== 'admin' && validLogin.test(login) && validPassword.test(password) && validName.test(name)){
             const response = await fetch(url, {
                 method: "POST",
                 body: JSON.stringify({
@@ -192,17 +188,25 @@ const Admin = (props: { setDisplayUser: any; }) => {
                 }
             });
             singInDisplayBtn();
-            setErrorText('Аккаунт успішно зареєстровано');
+            setErrorText('');
+            alert('Аккаунт успішно зереєстровано');
+
+            setLoginBorder('rgb(16, 98, 192)');
+            setPasswordBorder('rgb(16, 98, 192)');
+            setNameBorder('rgb(16, 98, 192)');
         }
         else if(filter === false){
-            if(login === ''){
+            if(login.trim() === ''){
                 setLoginBorder('red');
+                setErrorText('Заповніть всі поля');
             }
-            if(password === ''){
+            if(password.trim() === ''){
                 setPasswordBorder('red');
+                setErrorText('Заповніть всі поля');
             }
-            if(name === ''){
+            if(name.trim() === ''){
                 setNameBorder('red');
+                setErrorText('Заповніть всі поля');
             }
         }
         else if(filter === true){
