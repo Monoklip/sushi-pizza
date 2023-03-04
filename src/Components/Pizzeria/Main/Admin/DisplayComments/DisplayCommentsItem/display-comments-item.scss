@@ -1,0 +1,27 @@
+.displayCommentsItem{
+    display: flex;
+    padding: 10px;
+    box-sizing: border-box;
+    border-bottom: 1px solid grey;
+
+    .displayCommentsItem-image{
+        width: 80px;
+
+        img{
+            width: 80px;
+        }
+    }
+    .displayCommentsItem-user{
+        margin-left: 20px;
+
+        .displayCommentsItem-user-comment{
+            margin-top: 20px;
+        }
+    }
+}
+
+@media screen and (max-width: 1000px){
+    .displayCommentsItem{
+        display: block;
+    }
+}
