@@ -1,0 +1,218 @@
+.feedback {
+    width: 100%;
+    padding: 0 100px;
+    box-sizing: border-box;
+
+    .feedback-numbers {
+        display: flex;
+        justify-content: space-evenly;
+        align-items: center;
+        box-shadow: 0 5px 15px 0 grey;
+
+        .feedback-numbers-all {
+            width: 45%;
+            text-align: right;
+
+            p {
+                line-height: 40px;
+                font-size: 24px;
+
+                span {
+                    font-size: 40px;
+                }
+            }
+        }
+        .feedback-numbers-null {
+            width: 0px;
+            height: 40px;
+            border-right: 1px solid grey;
+        }
+        .feedback-numbers-interest {
+            width: 45%;
+            text-align: left;
+
+            p {
+                line-height: 42px;
+                font-size: 24px;
+
+                span {
+                    font-size: 40px;
+                }
+            }
+        }
+    }
+    .feedback-text {
+        margin-top: 50px;
+        text-align: center;
+    }
+    .feedback-reviews {
+        width: 90%;
+        margin: 50px auto;
+        text-align: center;
+
+        .feedback-reviews-write {
+            margin-top: 20px;
+            display: flex;
+
+            .feedback-reviews-write-text {
+                width: 65%;
+
+                textarea {
+                    width: 100%;
+                    height: 150px;
+                    padding: 10px;
+                    box-sizing: border-box;
+                    font-size: 16px;
+                    border-radius: 5px;
+
+                    &:focus {
+                        outline: none;
+                    }
+                }
+                .feedback-reviews-write-data-textError{
+                    height: 25px;
+                    color: red;
+                }
+            }
+            .feedback-reviews-write-data {
+                width: 35%;
+
+                input {
+                    width: 80%;
+                    height: 25px;
+                    padding: 0 10px;
+                    box-sizing: border-box;
+                    font-size: 16px;
+                    border: 1px solid black;
+                    border-radius: 5px;
+
+                    &:focus {
+                        outline: none;
+                        border: 2px solid black;
+                    }
+                }
+                .feedback-reviews-write-data-textError{
+                    height: 25px;
+                    color: red;
+                }
+                .feedback-reviews-write-data-checkbox {
+                    width: 100%;
+                    height: 20px;
+                    display: flex;
+                    justify-content: space-evenly;
+                    align-items: center;
+                    padding: 0 10px;
+                    box-sizing: border-box;
+
+                    input {
+                        width: 20px;
+                        margin-top: 15px;
+                    }
+                }
+            }
+        }
+        .feedback-reviews-btn {
+            button {
+                width: 200px;
+                height: 25px;
+                background: #9cc000;
+                border: none;
+                border-radius: 5px;
+                color: white;
+                font-size: 16px;
+                cursor: pointer;
+
+                &:hover {
+                    background: #769100;
+                }
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 1000px) {
+    .feedback .feedback-numbers .feedback-numbers-interest {
+        display: none;
+    }
+    .feedback .feedback-numbers .feedback-numbers-null {
+        display: none;
+    }
+    .feedback .feedback-numbers .feedback-numbers-all {
+        display: contents;
+    }
+}
+
+@media screen and (max-width: 920px) {
+    .feedback {
+        padding: 0;
+    }
+}
+
+@media screen and (max-width: 550px) {
+    .feedback .feedback-reviews .feedback-reviews-write {
+        display: block;
+    }
+    .feedback
+        .feedback-reviews
+        .feedback-reviews-write
+        .feedback-reviews-write-text {
+        width: 100%;
+    }
+    .feedback
+        .feedback-reviews
+        .feedback-reviews-write
+        .feedback-reviews-write-data {
+        width: 100%;
+        display: block;
+        margin-top: 20px;
+    }
+    .feedback
+        .feedback-reviews
+        .feedback-reviews-write
+        .feedback-reviews-write-data
+        input {
+        width: 51%;
+    }
+    .feedback
+        .feedback-reviews
+        .feedback-reviews-write
+        .feedback-reviews-write-data
+        .feedback-reviews-write-data-checkbox {
+        width: 60%;
+        margin: 0 auto;
+    }
+    .feedback-reviews-btn {
+        margin-top: 20px;
+    }
+}
+
+@media screen and (max-width: 525px) {
+    .feedback .feedback-numbers .feedback-numbers-all p {
+        font-size: 20px;
+    }
+    .feedback
+        .feedback-reviews
+        .feedback-reviews-write
+        .feedback-reviews-write-data
+        .feedback-reviews-write-data-checkbox {
+        height: auto;
+    }
+    .feedback
+        .feedback-reviews
+        .feedback-reviews-write
+        .feedback-reviews-write-data
+        .feedback-reviews-write-data-checkbox
+        input {
+        margin: 0;
+    }
+}
+
+@media screen and (max-width: 400px) {
+    .feedback
+        .feedback-reviews
+        .feedback-reviews-write
+        .feedback-reviews-write-data
+        input {
+        width: 65%;
+    }
+}

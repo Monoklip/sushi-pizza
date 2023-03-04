@@ -1,0 +1,11 @@
+.header-info-right-info-basket-buy {
+    .header-info-right-info-basket-buy-street {
+        width: 100%;
+        display: grid;
+        grid-template-columns: 4fr 1fr;
+    }
+    .header-info-right-info-basket-buy-house {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+    }
+}

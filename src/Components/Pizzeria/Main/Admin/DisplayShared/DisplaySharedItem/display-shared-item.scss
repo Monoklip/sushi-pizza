@@ -1,0 +1,111 @@
+.DisplaySharedItem{
+    width: 100%;
+    border: 1px solid #96cb01;
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+
+    .DisplaySharedItem-photo{
+        width: 35%;
+        text-align: center;
+
+        img{
+            width: 100%;
+        }
+        .DisplaySharedItem-btnDelete{
+            width: 120px;
+            height: 25px;
+            background: red;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            margin: 10px 20px;
+            cursor: pointer;
+
+            &:hover{
+                background: rgb(139, 1, 1);
+            }
+        }
+        .DisplaySharedItem-btnRename{
+            width: 120px;
+            height: 25px;
+            background: orange;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            margin: 10px 20px;
+            cursor: pointer;
+
+            &:hover{
+                background: rgb(156, 102, 1);
+            }
+        }
+    }
+    .DisplaySharedItem-info{
+        width: 65%;
+        padding: 20px;
+        box-sizing: border-box;
+
+        h2{
+            text-align: center;
+        }
+        p{
+            margin-top: 50px;
+        }
+    }
+    .DisplaySharedItem-infoRename{
+        width: 65%;
+        padding: 20px;
+        box-sizing: border-box;
+        text-align: center;
+
+        p{
+            margin-top: 10px;
+        }
+        input{
+            width: 60%;
+            margin-top: 5px;
+        }
+        textarea{
+            width: 60%;
+            height: 100px;
+        }
+        .DisplaySharedItem-btnSave{
+            width: 120px;
+            height: 25px;
+            background: green;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            margin: 10px 20px;
+            cursor: pointer;
+
+            &:hover{
+                background: rgb(0, 83, 0);
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 1050px){
+    .DisplaySharedItem{
+        display: block;
+        margin-bottom: 10px;
+    }
+    .DisplaySharedItem .DisplaySharedItem-photo{
+        width: 80%;
+        margin: 0 auto;
+    }
+    .DisplaySharedItem .DisplaySharedItem-info{
+        width: 100%;
+    }
+}
+
+@media screen and (max-width: 1050px){
+    .display-shared{
+        display: block;
+    }
+    .display-shared .display-shared-get{
+        margin: 0 auto 10px auto;
+    }
+}

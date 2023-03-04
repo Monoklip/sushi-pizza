@@ -1,0 +1,64 @@
+.display-bar{
+    margin-top: 50px;
+    display: flex;
+
+    .display-bar-get{
+        width: 250px;
+        height: 375px;
+        text-align: center;
+        border: 1px solid #9cc000;
+        border-radius: 10px;
+        padding: 20px;
+        box-sizing: border-box;
+        margin-right: 5px;
+
+        p{
+            margin-top: 10px;
+        }
+        input{
+            margin-top: 5px;
+            border: 1px solid grey;
+            border-radius: 3px;
+            text-align: center;
+        }
+        .display-bar-get-textError {
+            height: 20px;
+            color: red;
+        }
+        button{
+            width: 175px;
+            height: 20px;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            background: #9cc000;
+            cursor: pointer;
+
+            &:hover{
+                background: #688000;
+            }
+        }
+    }
+    .display-bar-delete{
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+    }
+}
+
+@media screen and (max-width: 1000px){
+    .display-bar .display-bar-delete{
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+@media screen and (max-width: 768px){
+    .display-bar{
+        display: block;
+    }
+    .display-bar .display-bar-get{
+        margin: 10px auto;
+    }
+    .display-bar .display-bar-delete{
+        grid-template-columns: 1fr;
+    }
+}

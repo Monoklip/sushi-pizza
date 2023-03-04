@@ -1,0 +1,39 @@
+.display-shared{
+    margin-top: 50px;
+    display: flex;
+
+    .display-shared-get{
+        width: 250px;
+        height: 370px;
+        text-align: center;
+        border: 1px solid #9cc000;
+        border-radius: 10px;
+        padding: 20px;
+        box-sizing: border-box;
+        margin-right: 5px;
+
+        p{
+            margin-top: 10px;
+        }
+        input{
+            margin-top: 5px;
+        }
+        textarea{
+            width: 170px;
+            height: 120px;
+        }
+        button{
+            width: 175px;
+            height: 20px;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            background: #9cc000;
+            margin-top: 20px;
+            cursor: pointer;
+        }
+    }
+    .display-shared-delete{
+        border-radius: 10px;
+    }
+}

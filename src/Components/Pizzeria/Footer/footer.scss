@@ -1,0 +1,123 @@
+.footer {
+    height: 120px;
+    padding: 20px 300px;
+    box-sizing: border-box;
+    display: flex;
+    margin-top: 50px;
+    border-top: 1px solid #9cc000;
+
+    .footer-tabs {
+        height: 100px;
+        width: 70%;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+
+        a {
+            text-decoration: none;
+            color: grey;
+            margin-top: 5px;
+
+            &:hover {
+                color: black;
+            }
+        }
+    }
+    .footer-link {
+        width: 30%;
+        display: flex;
+        justify-content: space-evenly;
+        padding: 0 80px;
+        box-sizing: border-box;
+
+        .footer-link-internet {
+            width: 25px;
+
+            img {
+                width: 100%;
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 1400px) {
+    .footer .footer-link {
+        padding: 0 60px;
+    }
+}
+
+@media screen and (max-width: 1360px) {
+    .footer {
+        padding: 20px 250px;
+    }
+    .footer .footer-link {
+        padding: 0 40px;
+    }
+}
+
+@media screen and (max-width: 1110px) {
+    .footer {
+        padding: 20px 200px;
+    }
+    .footer .footer-link {
+        padding: 0 40px;
+    }
+}
+
+@media screen and (max-width: 1000px) {
+    .footer {
+        padding: 20px 150px;
+    }
+    .footer .footer-link {
+        padding: 0 40px;
+    }
+}
+
+@media screen and (max-width: 800px) {
+    .footer {
+        padding: 20px 100px;
+    }
+}
+
+@media screen and (max-width: 700px) {
+    .footer {
+        padding: 20px 100px;
+    }
+    .footer .footer-link {
+        padding: 0 20px;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .footer {
+        padding: 20px 50px;
+    }
+    .footer .footer-link {
+        padding: 0 20px;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .footer {
+        padding: 20px 20px;
+    }
+    .footer .footer-link {
+        padding: 0 10px;
+    }
+}
+
+@media screen and (max-width: 320px) {
+    .footer {
+        padding: 20px 50px;
+        display: block;
+    }
+    .footer .footer-tabs {
+        width: 100%;
+        display: block;
+        text-align: center;
+        height: auto;
+    }
+    .footer .footer-link {
+        width: 50%;
+        margin: 20px auto;
+    }
+}

@@ -1,0 +1,138 @@
+.pizza-url{
+    width: 100%;
+    height: 100%;
+    
+    .pizza-url-shadow{
+        width: 70%;
+        border-radius: 10px;
+        margin: 50px auto 100px auto;
+        box-shadow: 0 0 20px 1px black;
+        padding: 10px;
+        box-sizing: border-box;
+        background: white;
+
+        .pizza-url-details{
+            width: 100%;
+            display: flex;
+            border: 1px solid #9cc000;
+            border-radius: 5px;
+            padding: 10px;
+            box-sizing: border-box;
+    
+            .pizza-url-details-image{
+                width: 40%;
+                img{
+                    width: 100%;
+                }
+            }
+    
+            .pizza-url-details-info{
+                width: 60%;
+                padding: 0 20px;
+                box-sizing: border-box;
+                font-family: sans-serif;
+
+                h1{
+                    color: #8ab800;
+                    font-weight: 500;
+                    font-style: italic;
+                    text-decoration: underline;
+                    font-size: 20px;
+                }
+    
+                .pizza-url-details-info-basket{
+                    min-height: 100px;
+
+                    p{
+                        margin-top: 10px;
+                        color: #9e9e9e;
+                        font-style: italic;
+                        font-size: 14px;
+                    }
+                }
+                .pizza-url-details-info-GrammPrice{
+                    width: 100%;
+                    display: flex;
+                    justify-content: space-between;
+                    margin-top: 20px;
+
+                    .pizza-url-details-info-GrammPrice-priceButton{
+                        text-align: center;
+
+                        .pizza-url-details-info-GrammPrice-priceButton-green{
+                            width: 150px;
+                            height: 30px;
+                            font-size: 18px;
+                            color: white;
+                            margin-top: 5px;
+                            border-radius: 7px;
+                            background-color: #9cc000;
+                            border: 2px solid #9cc000;
+                            cursor: pointer;
+
+                            &:hover{
+                                background: white;
+                                color: #9cc000;
+                            }
+                        }
+                        .pizza-url-details-info-GrammPrice-priceButton-orange{
+                            width: 150px;
+                            height: 30px;
+                            font-size: 18px;
+                            color: white;
+                            margin-top: 5px;
+                            border-radius: 7px;
+                            background-color: orange;
+                            border: 2px solid orange;
+                            cursor: pointer;
+
+                            &:hover{
+                                background: white;
+                                color: orange;
+                            }
+                        }
+                    }
+                }
+            }
+            .pizza-url-details-close{
+                width: 2%;
+
+                img{
+                    width: 100%;
+
+                    &:hover{
+                        cursor: pointer;
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media screen and  (max-width: 1130px){
+    .pizza-url .pizza-url-shadow {
+        width: 90%;
+    }
+}
+
+@media screen and  (max-width: 768px){
+    .pizza-url .pizza-url-shadow .pizza-url-details{
+        display: block;
+    }
+    .pizza-url .pizza-url-shadow .pizza-url-details .pizza-url-details-image {
+        width: 100%;
+    }
+    .pizza-url .pizza-url-shadow .pizza-url-details .pizza-url-details-info{
+        width: 100%;
+        margin-top: 20px;
+    }
+}
+
+@media screen and  (max-width: 450px){
+    .pizza-url .pizza-url-shadow .pizza-url-details .pizza-url-details-info .pizza-url-details-info-GrammPrice{
+        display: block;
+    }
+    .pizza-url .pizza-url-shadow .pizza-url-details .pizza-url-details-info .pizza-url-details-info-GrammPrice .pizza-url-details-info-GrammPrice-priceButton{
+        margin-top: 25px;
+    }
+}

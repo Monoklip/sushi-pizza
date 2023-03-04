@@ -1,0 +1,170 @@
+.admin {
+    padding: 0 100px;
+
+    .admin-login {
+        width: 300px;
+        text-align: center;
+        color: #9cc000;
+        margin: 100px auto;
+        border: 1px solid #9cc000;
+        border-radius: 10px;
+
+        input {
+            width: 200px;
+            height: 20px;
+            margin-top: 10px;
+            text-align: center;
+            border: 1px solid #9cc000;
+
+            &:focus {
+                outline: none;
+                border: 1px solid rgb(16, 98, 192);
+                box-shadow: 0 0 5px 1px rgb(16, 98, 192);
+            }
+        }
+        .admin-login_buttonSingIn {
+            width: 200px;
+            height: 20px;
+            border: none;
+            border-radius: 5px;
+            background: #9cc000;
+            color: white;
+            margin-top: 5px;
+            cursor: pointer;
+
+            &:hover {
+                background: #657c00;
+            }
+        }
+        .admin-login_buttonSingUp {
+            width: 80px;
+            height: 20px;
+            border: none;
+            border-radius: 5px;
+            background: white;
+            color: #657c00;
+            margin-bottom: 20px;
+            cursor: pointer;
+
+            &:hover {
+                color: black;
+            }
+        }
+        .admin-login-errorText {
+            height: 20px;
+            color: red;
+            margin-top: 5px;
+        }
+        .admin-login-singUp {
+            border: none;
+            color: #9cc000;
+            background: white;
+            cursor: pointer;
+            margin-top: 10px;
+            text-align: left;
+
+            &:hover {
+                background: white;
+                color: #657c00;
+            }
+        }
+    }
+
+    .admin-setting {
+        .admin-setting-position {
+            display: flex;
+            justify-content: space-around;
+
+            .admin-setting-position-item {
+                height: 150px;
+                text-align: center;
+                color: grey;
+                cursor: pointer;
+
+                &:hover {
+                    color: #9cc000;
+                }
+                img {
+                    height: 100%;
+                }
+            }
+            button{
+                width: 80px;
+                height: 30px;
+                background: rgb(241, 58, 58);
+                color: white;
+                border: none;
+                border-radius: 10px;
+                cursor: pointer;
+
+                &:hover {
+                    background: rgb(163, 0, 0);
+                }
+            }
+        }
+    }
+    .account{
+        .account-userName{
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+            button{
+                width: 80px;
+                height: 30px;
+                background: rgb(241, 58, 58);
+                color: white;
+                border: none;
+                border-radius: 10px;
+                cursor: pointer;
+
+                &:hover {
+                    background: rgb(163, 0, 0);
+                }
+            }
+        }
+        .account-info{
+            margin-top: 50px;
+            text-align: center;
+           
+            h2{
+                color: #657c00;
+
+                span{
+                    color: rgb(190, 0, 0);
+                }
+            }
+        }
+    }
+};
+
+@media screen and (max-width: 1130px) {
+    .admin {
+        padding: 0 10px;
+    }
+};
+
+@media screen and (max-width: 1000px) {
+    .admin
+        .admin-setting
+        .admin-setting-position
+        .admin-setting-position-item
+        img {
+        display: none;
+    }
+    .admin .admin-setting .admin-setting-position {
+        display: block;
+        text-align: center;
+    }
+    .admin .admin-setting .admin-setting-position .admin-setting-position-item {
+        width: auto;
+        height: auto;
+        font-size: 30px;
+    }
+};
+
+@media screen and (max-width: 500px) {
+    .admin {
+        padding: 0;
+    }
+};
